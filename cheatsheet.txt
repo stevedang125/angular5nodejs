@@ -157,5 +157,37 @@
     Use postman to check,
         Get request to users/profile:
         header: Key: Authorization Value: the token
+
+# 4. Front End: (Angular 5 time !!!)
+    app.module.ts:
+        import the library:
+            import { RouterModule, Routes } from '@angular/router';
+        set up the routes
+            const appRoutes: Routes =[
+                { path:'', component: HomeComponent },
+                { path: 'login', component: LoginComponent },
+                { path: 'register', component: RegisterComponent },
+                { path:'dashboard', component: DashboardComponent },
+                { path: 'profile', component: ProfileComponent },
+                { path: 'about', component: AboutComponent },
+                { path: '**', redirectTo: '', pathMatch: 'full' }
+            ];
+        don't forget to add it to the import array:
+            RouterModule.forRoot(appRoutes)
+    
+    index.html:
+        add some bootstrap, javascript for it:
+            <link rel="stylesheet" href="https://bootswatch.com/4/minty/bootstrap.min.css">
+            <link rel="stylesheet" href="https://bootswatch.com/4/minty/bootstrap.css">
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    app.component.html
+        for the nav bar to show up all the time:
+            <app-navbar></app-navbar>
+            <div class="container">
+                <router-outlet></router-outlet>
+            </div>
         
 
