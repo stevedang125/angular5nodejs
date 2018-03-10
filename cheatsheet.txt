@@ -1,0 +1,30 @@
+# 1.Create server, connect to database, create api and routes:
+    create server.js
+    npm init
+    add all the dependencies:
+        "dependencies": {
+            "express": "*",
+            "body-parser": "*",
+            "cors": "*",
+            "bcryptjs": "*",
+            "mongoose": "*",
+            "jsonwebtoken": "*",
+            "passport": "*",
+            "passport-jwt": "*"
+        },
+    npm install
+    bring in server.js:
+        express, path, bodyparser, cors, passport, mongoose
+        set up the localhost listener
+        get the path for:
+            routes: app.use('/users', users)
+                    bring in express, express.Router();
+                    set up the routes, exports the routers;
+            database: module.exports = { db: '', secret: ''}
+    create folders:
+        config/database.js
+        routes/users.js
+
+
+        
+
