@@ -13,6 +13,7 @@ const app = express();
 // Path to the users routes:
 const users = require('./routes/users');
 
+
 // Config for the database uri, and token's secret:
 const config = require('./config/database');
 
@@ -31,6 +32,12 @@ app.use(cors());
 // Body parser middleware:
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+// Passpport:
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport')(passport);
 
 // For all the users api:
 app.use('/users', users);

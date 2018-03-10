@@ -1,7 +1,29 @@
 # errors and fixed:
-    bodyparser errors? makesure app.use(bodyparser.json()) goes be4 any api, routes
+    Error:
+        bodyparser errors? 
+    Solution:
+        makesure app.use(bodyparser.json()) goes be4 any api, routes
 
-# 1.Create server, connect to database, create api and routes:
+    Error:#3
+        options.jwtFromRequest = ExtractJwt.fromAuthHeader();?
+        fromAuthHeader() is not a function.
+    Solution:
+        options.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme("jwt");
+        because jwt has a newer version now.
+
+    Error:#3
+        const token = jwt.sign(user, config.secret);
+        Expected "payload" to be a plain object.
+    Solution:https:
+        Your user object is initialized here:
+        User.getUserByUsername(username, (err, user)
+        A mongoosejs object, which contains many methods and is not "serializable".
+        Passing a plain object, by either using .lean() from mongoose or 
+        plain toJSON method:
+        
+        const token = jwt.sign(user.toJSON(), config.secret);
+
+# 1.Create server, connect to database, create api and routes: (set up the server, routes)
     create server.js
     npm init
     add all the dependencies:
@@ -28,7 +50,7 @@
         config/database.js
         routes/users.js
 
-# 2.Add user register:
+# 2.Add user register, salt+hash the user.password, added userSchema:(add register)
     create models/user.js
     bring in: mongoose, bcryptjs, config/db for mongoose, jwt.
     use mongoose.Schema to create an Object for new users.
@@ -55,6 +77,85 @@
             
     User postman to test. header(content-type, application/json)
 
-# 3.
+# 3. API Authentication, Token:(protect specific routes)
+    server.js:
+        bring in:   app.use(passport.initialize());
+                    app.use(passport.session());
+                    require('./config/passport')(passport);
+    
+    create config/passport.js
+        bring in: 
+            const JwtStrategy = require('passport-jwt').Strategy;
+            const ExtractJwt = require('passport-jwt').ExtractJwt;
+
+            const User = require('../models/user');
+            const config = require('../config/database');
+
+            module.exports = function(passport){
+                let options = {};
+                options.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme("jwt");
+                options.secretOrKey = config.secret;
+                passport.use(new JwtStrategy(options, (jwt_payload, done)=>{
+                    console.log(jwt_payload._id);
+                    User.getUserById(jwt_payload._id, (err, user)=>{
+                        if(err){
+                            return done(err, false);
+                        }
+                        if(user){
+                            return done(null, user);
+                        }else{
+                            return done(null, false);
+                        }
+                    });
+                }));
+            }
+
+    routes/users.js, /authentication:
+        1st thing: get user.username and user.password
+        then:
+        User.getUserByUsername(username, (err, user) => {
+        
+        Check for errors:
+            if(err){throw err;}
+
+        Check for existing user:
+            if(!user){
+                return res.json({ success:false, msg:'User not found!' });
+            }
+        
+        If there is a match for user, then compare the password
+        User.comparePassword(password, user.password, (err, isMatch) => {
+            if(err){
+                throw err;
+            }
+        
+        Also, add the token to the user:
+            if(isMatch){
+                const token = jwt.sign(user.toJSON(), config.secret,{expiresIn:604800});
+                res.json({
+                    success: true,
+                    token: 'JWT '+token,
+                    user: {
+                        id: user._id,
+                        name: user.name,
+                        username: user.username,
+                        email: user.email
+                    }
+            });
+              
+            } else{
+                return res.json({success:false, msg:'Wrong password!'});
+            }
+            });
+            });
+            });
+
+    To protect a route, use passport.authenticate('jwt', {session: false}) as the 2nd param.
+        Eg:
+        From: router.get('/profile', (req, res, next) =>{}
+        To:router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next)=>{}
+    Use postman to check,
+        Get request to users/profile:
+        header: Key: Authorization Value: the token
         
 
