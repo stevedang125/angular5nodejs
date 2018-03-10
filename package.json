@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "express": "*",
-    "body-parser": "*",
+    "body-parser": "^1.18.2",
     "cors": "*",
     "bcryptjs": "*",
     "mongoose": "*",

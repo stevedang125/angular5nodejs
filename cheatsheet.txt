@@ -1,3 +1,6 @@
+# errors and fixed:
+    bodyparser errors? makesure app.use(bodyparser.json()) goes be4 any api, routes
+
 # 1.Create server, connect to database, create api and routes:
     create server.js
     npm init
@@ -25,6 +28,33 @@
         config/database.js
         routes/users.js
 
+# 2.Add user register:
+    create models/user.js
+    bring in: mongoose, bcryptjs, config/db for mongoose, jwt.
+    use mongoose.Schema to create an Object for new users.
+    exports the user schema with the name of the model, schema (User, userSchema)
+    exports a getUserById function (id, callback), User.findById(id, callback); // deletion
+    exports a getUserByUsername function(username, callback), query = {username: username},
+                                                     User.findOne(query, callback) // search
+    exports an addUser function(newUser, (callback) =>{
+        bcryptjs:
+            genSalt the password
+            hash    the password
+        newUser.save(callback);
+    });
 
+    routes: register
+            create a new object to hold the new user.
+            call User.addUser(newUser, (err, user)=>{
+                if(err){
+                    res.json({success: false, msg: 'Error! Failed to register user.'});
+                }else{
+                    res.json({success: true, msg: 'User registered!'});
+                }
+            });
+            
+    User postman to test. header(content-type, application/json)
+
+# 3.
         
 

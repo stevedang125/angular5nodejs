@@ -1,6 +1,6 @@
 
 const express = require('express');
-const bodyparser = require('body-parser');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -28,11 +28,14 @@ mongoose.connection.on('error', (err)=>{
 // Cors middleware:
 app.use(cors());
 
+// Body parser middleware:
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
 // For all the users api:
 app.use('/users', users);
 
-// Body parser middleware:
-app.use(bodyparser.json());
+
 
 app.get('/', (req, res) =>{
     res.send('Home page. ');
