@@ -1,4 +1,5 @@
 
+var http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -48,6 +49,6 @@ app.get('/', (req, res) =>{
     res.send('Home page. ');
 });
 
-app.listen(port, () =>{
+http.createServer(app).listen(port, () =>{
     console.log('The magical back end is running on port: '+port);
 });

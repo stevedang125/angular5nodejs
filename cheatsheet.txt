@@ -189,5 +189,47 @@
             <div class="container">
                 <router-outlet></router-outlet>
             </div>
-        
 
+# 5. Validation and Authentication:(Added Register)
+    bring in server.js:
+        var http = require('http');
+        http.createServer(app).listen(port, () =>{}
+
+    Create to simple forms for register and login.
+    Add links, ngModel, event binding to them.
+
+    Validation: create service folder, then ng g service validation
+        Add the service to app.module.ts
+        Simple validation for the input fields:
+            validateRegister(user){
+                if(user.name == undefined || user.email == undefined || user.username == undefined || user.password == undefined){
+                    return false;
+                }else{
+                    return true;
+                }
+            }
+
+            validateEmail(email){
+                const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(String(email).toLowerCase());
+            }
+
+    Authentication: in service folder, ng g service auth
+        Add the service to app.module.ts
+            import { HttpClient, HttpHeaders } from '@angular/common/http';
+        Call the backend server on register
+            authToken: any;
+
+            private baseUri:string="http://localhost:8080";
+            private headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+            constructor(private http: HttpClient) { }
+
+            registerUser(user){
+                return this.http.post(this.baseUri+'/users/register', user, {headers:this.headers});
+            }
+    
+    Register component:
+        Add the service, inject the service to use its functions.
+        .subcribe(data => {}, err =>{}) to the http information:
+    

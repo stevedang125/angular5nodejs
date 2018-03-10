@@ -9,17 +9,20 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AboutComponent } from './about/about.component';
-import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 
 // services=> providers array:
+import { ValidateService } from './services/validate.service';
+import { AuthService } from './services/auth.service'; 
+// //Import toast module
+// import { ToastModule } from 'ng2-toastr/ng2-toastr';
+// import { BrowserAnimationsModule } from '@angular/platform-browser';
 
 const appRoutes: Routes =[
   { path:'', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path:'dashboard', component: DashboardComponent },
   { path: 'profile', component: ProfileComponent },
@@ -32,7 +35,6 @@ const appRoutes: Routes =[
     AppComponent,
     NavbarComponent,
     AboutComponent,
-    LoginComponent,
     RegisterComponent,
     HomeComponent,
     DashboardComponent,
@@ -43,8 +45,9 @@ const appRoutes: Routes =[
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appRoutes)
+   
   ],
-  providers: [],
+  providers: [ValidateService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

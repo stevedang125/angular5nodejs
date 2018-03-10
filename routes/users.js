@@ -35,6 +35,16 @@ router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res
     res.json({user: req.user});
 });
 
+// // get all the data 
+// router.get('/fetch', (req,res,next) => {
+//     User.find({}, (err, users)=>{
+//         if(err){
+//             res.status(500).json({errmsg: 'Failed to pull data from database:'+err});
+//         }
+//         res.status(200).json({msg: users});
+//     });
+// });
+
 router.post('/authentication', (req, res, next)=>{
     const username = req.body.username;
     const password = req.body.password;
