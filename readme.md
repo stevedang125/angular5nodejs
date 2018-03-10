@@ -20,6 +20,6 @@ Run the project!
 $ npm install
 $ npm start
 ```
-If all is successful, it should be available at your `localhost` on `port 8080` (`http://localhost:3000/`).
+If all is successful, it should be available at your `localhost` on `port 8080` (`http://localhost:8080/`).
 
 
