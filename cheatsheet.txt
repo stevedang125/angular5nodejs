@@ -191,6 +191,15 @@
             </div>
 
 # 5. Validation and Authentication:(Added Register)
+    capture the information from the fields user entered
+    in the onRegisterSubmit(){
+        create a new userObject to hold those information
+        validateEmail
+        validateRegister
+        use auth service to send a request to the server
+        then .subcribe to get the data
+    }
+
     bring in server.js:
         var http = require('http');
         http.createServer(app).listen(port, () =>{}
@@ -232,4 +241,19 @@
     Register component:
         Add the service, inject the service to use its functions.
         .subcribe(data => {}, err =>{}) to the http information:
+
+# 6 Log in and Log out:
+    Get the data from the user input fields.
+    Validation on Log in
+    Use authService for authenticateUser, 
+        if the user has an account, wrong password or username.
+    
+    send a request to the back end server to get the data, which
+    have the token and the user object.
+    save the token and userobject into local storeStorage.
+
+    logout()
+        set authToken = null, userObject = null;
+
+
     

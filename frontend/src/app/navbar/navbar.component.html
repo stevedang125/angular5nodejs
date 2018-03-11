@@ -33,6 +33,10 @@
       [routerLinkActiveOptions] ="{exact:true}">
         <a class="nav-link btn" [routerLink]="['/register']">Register</a>
       </li>
+      &nbsp;&nbsp;
+      <li class="nav-item active">
+        <a class="nav-link btn" [routerLink]="['/']" (click)="onLogoutClick()">Log out</a>
+      </li>
       
     </ul>
 

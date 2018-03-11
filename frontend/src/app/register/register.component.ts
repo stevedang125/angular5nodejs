@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
       username: this.username,
       password: this.password
     };
-    console.log('This is the user: '+ user.name);
+    
     // Require fields:
     if(!this.validateService.validateRegister(user)){
       //this.flashMessage.show('Please fill in all fields',{cssClass: 'alert-danger', timeout: 5000});
@@ -43,8 +43,8 @@ export class RegisterComponent implements OnInit {
       return false;
     }
 
-    console.log('This is the user: '+ user.password);
-
+    // Use the auth service(http) to request the information,
+    // then because we subcribe to it, we got the data/error back.
     this.authService.registerUser(user).subscribe(
       data =>{
         alert('You are registered and now can log in');
