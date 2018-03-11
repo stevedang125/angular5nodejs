@@ -24,23 +24,27 @@
     <ul class="navbar-nav navbar-right">
       <li class="nav-item active"
       [routerLinkActive]="['active']"
-      [routerLinkActiveOptions] ="{exact:true}">
+      [routerLinkActiveOptions] ="{exact:true}"
+      *ngIf="authService.signedIn()">
         <a class="nav-link btn" [routerLink]="['/dashboard']">Dashboard <span class="sr-only">(current)</span></a>
       </li>
       &nbsp;&nbsp;
       <li class="nav-item active"
       [routerLinkActive]="['active']"
-      [routerLinkActiveOptions] ="{exact:true}">
+      [routerLinkActiveOptions] ="{exact:true}"
+      *ngIf="authService.signedIn()">
         <a class="nav-link btn" [routerLink]="['/profile']">Profile</a>
       </li>
       &nbsp;&nbsp;
       <li class="nav-item active"
       [routerLinkActive]="['active']"
-      [routerLinkActiveOptions] ="{exact:true}">
+      [routerLinkActiveOptions] ="{exact:true}"
+      *ngIf="!authService.signedIn()">
         <a class="nav-link btn" [routerLink]="['/register']">Register</a>
       </li>
       &nbsp;&nbsp;
-      <li class="nav-item active">
+      <li class="nav-item active"
+      *ngIf="authService.signedIn()">
         <a class="nav-link btn" [routerLink]="['/']" (click)="onLogoutClick()">Log out</a>
       </li>
       

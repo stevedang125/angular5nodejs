@@ -13,12 +13,12 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
       this.authService.getProfile().subscribe(profile =>{
-      console.log("this is the profile"+profile);
-      console.log("this is the profile"+profile['user']);
+      //console.log("this is the profile"+profile);
+      //console.log("this is the profile"+profile['user']);
       this.user = profile['user'];
     },
       err => {
-        console.log('this is the error'+err);
+        //console.log('this is the error'+err);
         this.router.navigate(['/']);
         return false;
   });

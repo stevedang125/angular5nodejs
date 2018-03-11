@@ -43,13 +43,16 @@ export class HomeComponent implements OnInit {
         // console.log(data['user']);
         const token = data['token'];
         const userObject = data['user'];
-        console.log(token);
-        console.log(userObject);
+        //console.log(token);
+        //console.log(userObject);
 
         this.authService.storeUserData(token, userObject);
         
         alert('You have logged in');
-        this.router.navigate(['/dashboard']);
+
+        this.authService.setSignIn();
+
+        this.router.navigate(['/profile']);
       }
       if(!success)
       {

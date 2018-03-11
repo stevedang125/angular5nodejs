@@ -255,5 +255,9 @@
     logout()
         set authToken = null, userObject = null;
 
+# 7. Protect the api: ./profile if the user is not logged in,
+     Hide: dashboard, profile, logout Tabs from Nav Bar if not logged in.
+     Show: ^___________________________________________ if logged in.(hide register.)
+
 
     
