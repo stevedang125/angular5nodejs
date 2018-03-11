@@ -81,6 +81,10 @@ router.post('/authentication', (req, res, next)=>{
 //     });
 // });
 
+router.get('/dashboard', passport.authenticate('jwt', {session: false}), (req, res, next)=>{
+    res.json({user: req.user});
+});
+
 router.put('/update', (req, res, next)=>{
     res.send('Update route.');
 });

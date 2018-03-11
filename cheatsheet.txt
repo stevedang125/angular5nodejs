@@ -258,6 +258,72 @@
 # 7. Protect the api: ./profile if the user is not logged in,
      Hide: dashboard, profile, logout Tabs from Nav Bar if not logged in.
      Show: ^___________________________________________ if logged in.(hide register.)
+     
+    ***** NOTE:
+        Old version:(didn't work right with Angular5)
+            import { tokenNotExpired } from 'angular2-jwt';
+            The version of angular2-jwt to check for tokenNotExpired isn't working right.
 
+        New version:(https://github.com/auth0/angular2-jwt)
+            Read and test this(later)
+        
+    Solution:
+        Used loadToken() in service, set the signedin value to True when loggedIn,
+        for a work around instead for the new "angular2-jwt"
+        version that supports Angular5.
+
+
+ # 8. Protect the api: ./dashboard, fetch the information from the server + database: (Test)
+ ** BACK END: routes/users.js:
+    1) Similar to profile, to protect an api, add:
+        passport.authenticate('jwt', {session: false}),
+    to the second parameter, then the request has to have a jwt added to the header to 
+    access this api:
+
+        router.get('/dashboard', 
+        passport.authenticate('jwt', {session: false}),
+        (req, res, next)=>{
+        res.json({user: req.user});
+        }); 
+
+    POSTMAN: localhost:8080/dashboard
+        w/o  : key: Authorization, val: jwt token => Unauthorized
+        with : key: Authorization, val: jwt token => User Object with all the info.
+
+ ** FRONT END: auth.service:
+    2) Similar to get profile, add this to make a request to the server backend:
+        // GET: dashboard
+        getDashboard(){
+            this.loadToken(); // get the token from local storage, load it into "authToken"
+            this.headers = new HttpHeaders().set('Authorization', this.authToken);
+            return this.http.get(this.baseUri+'/dashboard', {headers:this.headers});
+        }
+    
+    3) Similar to profile, add route, authservice to: (dashboard.component.ts)
+        Import services, routes:
+            import { AuthService }  from '../services/auth.service';
+            import { Router, Route } from '@angular/router';
+
+        Inject to the constructor, create an object "user: Object;" to hold the response/return object:
+            user: Object;
+            constructor(private authService: AuthService,
+                        private router: Router) { }
+
+        Make a request on Init to fetch the data first when loaded, in ngOnInit method:
+            this.authService.getDashboard().subscribe(profile =>{
+                this.user = profile['user'];
+            },
+            err => {
+                this.router.navigate(['/']);
+                return false;
+            });
+
+ # 9. Get the tasks from the database/collections base on the unique _id:
+
+    
+        
+
+    
+    
 
     
