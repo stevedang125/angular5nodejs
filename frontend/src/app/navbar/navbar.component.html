@@ -10,6 +10,21 @@
       <li class="nav-item active"
       [routerLinkActive]="['active']"
       [routerLinkActiveOptions] ="{exact:true}">
+        <a class="nav-link btn" [routerLink]="['/']">Home</a>
+      </li>
+      
+      &nbsp;&nbsp;
+      <li class="nav-item active"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions] ="{exact:true}">
+        <a class="nav-link btn" [routerLink]="['/about']">About</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav navbar-right">
+      <li class="nav-item active"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions] ="{exact:true}">
         <a class="nav-link btn" [routerLink]="['/dashboard']">Dashboard <span class="sr-only">(current)</span></a>
       </li>
       &nbsp;&nbsp;
@@ -22,15 +37,6 @@
       <li class="nav-item active"
       [routerLinkActive]="['active']"
       [routerLinkActiveOptions] ="{exact:true}">
-        <a class="nav-link btn" [routerLink]="['/about']">About</a>
-      </li>
-    </ul>
-
-    <ul class="navbar-nav navbar-right">
-      &nbsp;&nbsp;
-      <li class="nav-item active"
-      [routerLinkActive]="['active']"
-      [routerLinkActiveOptions] ="{exact:true}">
         <a class="nav-link btn" [routerLink]="['/register']">Register</a>
       </li>
       &nbsp;&nbsp;
@@ -39,7 +45,6 @@
       </li>
       
     </ul>
-
 
   </div>
 </nav>

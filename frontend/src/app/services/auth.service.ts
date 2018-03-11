@@ -12,11 +12,18 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   registerUser(user){
-    return this.http.post(this.baseUri+'/users/register', user, {headers:this.headers});
+    return this.http.post(this.baseUri+'/register', user, {headers:this.headers});
   }
 
   authenticateUser(user){
-    return this.http.post(this.baseUri+'/users/authentication', user, {headers:this.headers});
+    return this.http.post(this.baseUri+'/authentication', user, {headers:this.headers});
+  }
+
+  getProfile(){
+    this.loadToken();
+    this.headers = new HttpHeaders().set('Authorization', this.authToken);
+  // this.headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.get(this.baseUri+'/profile', {headers:this.headers});
   }
 
   storeUserData(token, user){
@@ -24,6 +31,13 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
     this.user = user;
+  }
+
+  loadToken(){
+    const token = localStorage.getItem('id_token');
+    console.log("this is loadtoken"+token);
+    this.authToken = token;
+    console.log("this is authToken"+this.authToken);
   }
 
   logout(){
