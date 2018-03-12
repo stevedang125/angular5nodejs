@@ -17,15 +17,18 @@ import { ProfileComponent } from './profile/profile.component';
 // services=> providers array:
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service'; 
+import { AuthGuardService } from './services/guard.service';
+
+
 // //Import toast module
 // import { ToastModule } from 'ng2-toastr/ng2-toastr';
 // import { BrowserAnimationsModule } from '@angular/platform-browser';
 
 const appRoutes: Routes =[
   { path:'', component: HomeComponent },
-  { path: 'register', component: RegisterComponent },
-  { path:'dashboard', component: DashboardComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'register', component: RegisterComponent},
+  { path:'dashboard', component: DashboardComponent, canActivate: [AuthGuardService]},
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
   { path: 'about', component: AboutComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
@@ -47,7 +50,7 @@ const appRoutes: Routes =[
     RouterModule.forRoot(appRoutes)
    
   ],
-  providers: [ValidateService, AuthService],
+  providers: [ValidateService, AuthService, AuthGuardService, HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

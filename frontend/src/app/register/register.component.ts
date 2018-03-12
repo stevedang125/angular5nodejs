@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    
   }
 
   onRegisterSubmit(){

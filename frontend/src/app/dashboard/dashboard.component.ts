@@ -19,9 +19,12 @@ export class DashboardComponent implements OnInit {
       this.user = profile['user'];
     },
       err => {
+        console.log('subcribe err, navigating back to /');
         this.router.navigate(['/']);
         return false;
     });
+
+    
 
   }// close ngOnInit()
 

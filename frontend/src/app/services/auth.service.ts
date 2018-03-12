@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tokenNotExpired } from 'angular2-jwt';
 
 
+
 @Injectable()
 export class AuthService {
   authToken: any;
@@ -13,6 +14,11 @@ export class AuthService {
   private headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) { }
+
+  isAuthenticated(){
+
+  }
+
 
   // POST: register
   registerUser(user){
@@ -68,7 +74,7 @@ export class AuthService {
     if(this.authToken){
       this.setSignIn();
     }else{
-      if(!this.authToken){
+      if(this.authToken == null){
         //console.log('No token found');
         this.signedin = false;
       }

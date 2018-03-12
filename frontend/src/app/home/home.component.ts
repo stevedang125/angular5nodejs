@@ -13,13 +13,17 @@ export class HomeComponent implements OnInit {
   username: String;
   password: String;
   
+  login_messages: Boolean = false;
 
   constructor(private validateService: ValidateService,
               private authService: AuthService,
               private router: Router) { }
 
   ngOnInit() {
+    
   }
+
+ 
 
   onLoginSubmit(){
     const user = {
@@ -49,6 +53,7 @@ export class HomeComponent implements OnInit {
         this.authService.storeUserData(token, userObject);
         
         alert('You have logged in');
+        // this.login_messages = true;
 
         this.authService.setSignIn();
 

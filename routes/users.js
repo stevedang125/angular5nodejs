@@ -81,7 +81,13 @@ router.post('/authentication', (req, res, next)=>{
 //     });
 // });
 
+// router.get('/dashboard', passport.authenticate('jwt', {session: false}), (req, res, next)=>{
+//     console.log('here in backend');
+//     res.json({user: req.user});
+// });
+
 router.get('/dashboard', passport.authenticate('jwt', {session: false}), (req, res, next)=>{
+    console.log('here in backend');
     res.json({user: req.user});
 });
 
@@ -92,5 +98,5 @@ router.put('/update', (req, res, next)=>{
 router.delete('/delete/:id', (req, res, next)=>{
     res.send('Detele route.');
 });
-
+ 
 module.exports = router;

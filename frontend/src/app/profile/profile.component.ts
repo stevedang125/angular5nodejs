@@ -12,6 +12,7 @@ export class ProfileComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+
       this.authService.getProfile().subscribe(profile =>{
       //console.log("this is the profile"+profile);
       //console.log("this is the profile"+profile['user']);
@@ -24,5 +25,7 @@ export class ProfileComponent implements OnInit {
   });
 
   }
+
+  
 
 }
