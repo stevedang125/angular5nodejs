@@ -1,6 +1,6 @@
 # Daily fun tasks:
 
-This program is a personal daily task manager created for fun. It supports encyrpted logins for each user, task lookup, deletion and insertion!
+This program is a personal daily task manager created for fun. It supports encrypted logins for each user, task lookup, deletion and insertion!
 
 This project utilizes the MEAN stack: MongoDB(mLab), Express, Angular5, and NodeJS
 
