@@ -13,7 +13,7 @@ const app = express();
 
 // Path to the users routes:
 const users = require('./routes/users');
-
+const tasks = require('./routes/tasks');
 
 // Config for the database uri, and token's secret:
 const config = require('./config/database');
@@ -30,6 +30,9 @@ mongoose.connection.on('error', (err)=>{
 // Cors middleware:
 app.use(cors());
 
+// Set the static folder:
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Body parser middleware:
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -42,9 +45,12 @@ require('./config/passport')(passport);
 
 // For all the users api:
 app.use('/', users);
+app.use('/users', tasks);
 
 
-
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 // app.get('/', (req, res) =>{
 //     res.send('Home page. ');
 // });

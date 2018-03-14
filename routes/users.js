@@ -6,6 +6,11 @@ const passport = require('passport');
 const User = require('../models/user');
 const config = require('../config/database');
 
+const Task = require('../models/tasklist');
+const mongoose = require('mongoose');
+var ObjectId = mongoose.Types.ObjectId;
+const Schema = mongoose.Schema;
+
 router.post('/register', (req, res, next) => {
     // Create an object for a new user:
     let newUser = new User({
@@ -29,6 +34,7 @@ router.post('/register', (req, res, next) => {
 
 
 router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next)=>{
+    console.log('Im here in backend for Profile');
     res.json({user: req.user});
 });
 
@@ -71,32 +77,26 @@ router.post('/authentication', (req, res, next)=>{
     });
 });
 
-// // get all the data 
-// router.get('/fetch', (req,res,next) => {
-//     User.find({}, (err, users)=>{
-//         if(err){
-//             res.status(500).json({errmsg: 'Failed to pull data from database:'+err});
-//         }
-//         res.status(200).json({msg: users});
-//     });
-// });
-
-// router.get('/dashboard', passport.authenticate('jwt', {session: false}), (req, res, next)=>{
-//     console.log('here in backend');
-//     res.json({user: req.user});
-// });
 
 router.get('/dashboard', passport.authenticate('jwt', {session: false}), (req, res, next)=>{
-    console.log('here in backend');
-    res.json({user: req.user});
+    console.log('Im here in backend for Dashboard '+req.user.id);
+
+    var user_id = new ObjectId(req.user.id);
+    console.log('=================the user_id is: '+user_id)
+    var query = Task.find({});
+    query.where('user_id', user_id);
+
+    query.exec(function(err, tasklist){
+        if(err){
+            console.log('There is an erro from get method: '+err);
+        }else{
+            console.log('Success! res back to auth')
+            res.status(200).json({user: req.user, tasklist: tasklist});
+        }
+    });
+
+
 });
 
-router.put('/update', (req, res, next)=>{
-    res.send('Update route.');
-});
-
-router.delete('/delete/:id', (req, res, next)=>{
-    res.send('Detele route.');
-});
  
 module.exports = router;
