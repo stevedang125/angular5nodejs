@@ -345,11 +345,194 @@
     3) Inject them into, app.module, add canActivate: [AuthGuardService] to their routes.
 
  # 10. Add a task to the database/collection: tasklist:
-    1) Create tasklist.js:
-    
-    2) 
+ ** BACKEND:
+    1) Create models/tasklist.js
+        Bring in: mongoose, database, mongoose.Schema, ObjectId = mongoose.Types.ObjectId;
+        
+        Create a new Schema to hold the input data:(_id doesn't required)
+            var taskSchema = Schema ({
+                name: { type: String },
+                time: { type: String },
+                user_id: { type: String }
+            });
+        
+        Export the Schema to a variable, and which database collection will it be saved in:(tasklist in this case)
+            const Task = module.exports = mongoose.model('Task', taskSchema, 'tasklist');
 
- # 11. Get the tasks from the database/collections base on the unique _id:
+            Helper functions:
+                // Add tasks
+                module.exports.addTask = function(newTask, callback){
+                    newTask.save(callback);
+                }
+
+                // Delete/Update
+                module.exports.getTaskById = function(id, callback){
+                    Task.findById(id, callback);
+                }
+                // Search:
+                module.exports.getTaskByTaskUserID = function(taskname, callback){
+                    const query = {user_id: user_id};
+                    Task.findOne(query, callback);
+                }
+
+    2) Request: Post, Put, Delete, Get (routes/tasks.js)
+        Bring in: express, router, Task schema(models/tasklist), mongoose, database, mongoose.Schema, ObjectId
+
+        2a) Add a task:(Post request)
+            Create a new Schema Object to hold the input data:
+            (only name and time get filled in, both ids will be undefined for later assign)
+                let newTask = new Task({
+                    _id: req.body._id,
+                    name: req.body.name,
+                    time: req.body.time,
+                    user_id: req.body.user_id
+                });
+            
+            Call the addTask Helper function from models/tasklist to save the new task to database:
+                Task.addTask(newTask, (err, user) =>{
+                    if(err){
+                        res.json({success: false, msg: 'Error! Failed to register Task.'});
+                    }else{
+                        res.json({success: true, msg: 'Task registered!'});
+                    }
+                });
+        
+        2b) Upate a task:(Put request)
+            Find the task, that need to be updated, _id by Helper function in models/tasklist.
+                Task.getTaskById(req.body._id, (err, task) =>{ 
+                
+                If there is an error, res back with a 500 status and err msg.
+                If success:
+                    Assign/replace the found task with the req.body.infor
+                Then:
+                    Save the task by the addTask Helper function in models/tasklist
+                } // close of getTaskById()
+
+        2c) Delete a task:(Delete request)
+            Extract the passed in id parameter from the get url:
+                '/delete/:id'
+                req.params.id 
+            
+            Find the task id and remove it from database: 
+                Task.findOneAndRemove({_id:req.params.id}, (err, task) =>{}
+
+        2d) Fetch the task list from the database:(Get request) routes/users.js
+            Get the FKey of the logged in user for the tasks added to the database:
+                var user_id = new ObjectId(req.user.id);
+                var query = Task.find({});
+                query.where('user_id', user_id);
+                query.exec(function(err, tasklist){
+                    if(err){
+                        console.log('Error! ** Search for tasks with same owner: '+err);
+                    }else{
+                        console.log('Success! Sending back the list to the frontend.')
+                        res.status(200).json({user: req.user, tasklist: tasklist});
+                    }
+                });
+    
+ ** FRONTEND:
+    1) Create an object to hold the input data:(task.ts)
+        export class Task {
+            // _id will get grenerated with the Schema in DataBase
+            // it's optional, when add a new task we don't need this id :)
+            public _id?: string; 
+            public name: string;
+            public time: string;
+            public user_id: string; 
+        }
+    
+    2) Make http calls to the backend to get data from database: (AuthService)
+
+        Http POST
+        addTask(task: Task){
+            return this.http.post(this.baseUri+'/users/add', task, {headers:this.headers});
+        }
+
+        Http PUT
+        updateTask(task){
+            return this.http.put(this.baseUri+'/users/update', task, {headers:this.headers});
+        }
+
+        Http DELETE
+        deleteTask(task:Task){
+            const id = task._id;
+            return this.http.delete(this.baseUri+'/users/delete/'+id, {headers:this.headers});
+        }
+
+        Http GET
+        // GET: dashboard
+        // Fetch the task list from database to the front end (http call)
+        getDashboard(){
+            this.loadToken();
+            this.headers = new HttpHeaders().set('Authorization', this.authToken);
+            return this.http.get(this.baseUri+'/dashboard', {headers:this.headers});
+        }
+
+    3) Create, Init variables, Create functions to send data to authservice for making requests:
+        
+            task:Task;
+            tasks:Task[];
+            
+            _id:string = null;
+            name:string;
+            time:string;
+            user_id:string;
+
+            user: Object;
+            userID: string;
+        3a) Add or Update the task:(2 in 1 YEAHHH!!!)
+            // Create a new Task to hold the input infor from the form
+            const newTask = {
+                _id: this._id,
+                name: this.name,
+                time: this.time,
+                user_id: this.userID
+            }
+
+            There are two cases:
+                null task._id: New Task
+                !null task._id: Updating a task.
+
+            3aa) null task._id: New Task:
+                Call the authservice to send a POST http request to add a task:
+                    this.authService.addTask(newTask).subscribe(data =>{}
+            3ab) !null task._id: Updating a task:
+                Call the authservice to send a PUT http request to update a task:
+                    this.authService.updateTask(newTask).subscribe(data =>{}
+
+            Call fetchDashboard() to add the task to the show task list fast like a ninja:
+            // Reset the form (for now temp. solution)
+            this._id = null;
+            this.name = null;
+            this.time = null;
+            this.user_id = null;
+
+        3c) Fetch the task list from the database:
+            ngOnInit() {
+                this.fetchDashboard();
+            }// close ngOnInit()
+
+            // Fetch the task list from the database:
+            fetchDashboard(){
+                this.authService.getDashboard().subscribe(profile =>{
+                this.user = profile['user'];
+                this.userID = profile['user']._id;
+                this.tasks = profile['tasklist'];
+                },
+                err => {
+                    console.log('Fetch Failed! Navigating back to homepage /, err msg: '+err);
+                    this.router.navigate(['/']);
+                    return false;
+                });
+            }
+        
+
+
+
+
+
+
+
 
     
         

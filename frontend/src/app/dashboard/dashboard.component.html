@@ -1,93 +1,74 @@
-<!-- <div *ngIf="user" class="container">
-    <h2 class="page-header">Welcome back, {{user.name}}.</h2>
-    <ul class="list-group">
-        <li class="list-group-item">ID: {{user._id}}</li>
-      <li class="list-group-item">Username: {{user.username}}</li>
-      <li class="list-group-item">Email: {{user.email}}</li> 
-    </ul>
-  </div> -->
+<div *ngIf="user" class="card">
+    <h2 class="page-header">{{user.name}}'s Daily Goals</h2>
+</div>
 
-  <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Tasks and Time</h4>
-        <table class="table table-hover">
-          
-          <thead>
-            <tr>
-              <!-- <th>ID</th> -->
-              <th>USER_ID</th>
-              <th>Anything</th>
-              <th>Anything</th>
-              <th>Options</th>
-            </tr>
-          </thead>
-    
-          <tbody>
-            <tr *ngFor = "let task of hack(tasks); let i = index">
-              <!-- <td>{{task._id}}</td> -->
-              <td>{{task.user_id}}</td>
-              <td>{{task.name}}</td>
-              <td>{{task.time}}</td>
-              <td>
-                <button class="btn btn-secondary" (click)="deleteTask(task)">Finished</button>
-                <button class="btn btn-success" (click)="edit(task)" >Edit</button>
-              </td>
-            </tr>
-          </tbody>
-    
-        </table>
-      </div>
-    </div>
+<div class="card">
+<!-- <form (ngSubmit)="addOrUpdate()"> -->
+<form>
+  <div class="card-body">
+    <h4 class="card-title">Add A Goal</h4>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Goal</th>
+          <th>Time</th>
+          <th></th>
+        </tr>
+      </thead>
 
-  <form (ngSubmit)="addOrUpdate()">
-      <!-- <div class="form-group">
-          <label for="id">ID</label>
-          <input type="text" name="_id" [(ngModel)] = "_id" class="form-control">
-          <p>{{_id}}</p>
-      </div> -->
-
-    <div class="form-group">
-      <label for="task">Task</label>
-      <input type="text" name="name" [(ngModel)] = "name" class="form-control">
-      <p>{{name}}</p>
-    </div>
-
-    <div class="form-group">
-        <label for="time">Time</label>
-        <input type="text" name="time" [(ngModel)] = "time" class="form-control">
-        <p>{{time}}</p>
-    </div>
-    <input type="submit" value="Submit" class="btn btn-success">
-  </form>
+      <tbody>
+        <tr>
+          <td>
+            <div class="form-group">
+                <input type="text" name="name" [(ngModel)] = "name" class="form-control">
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+                <input type="text" name="time" [(ngModel)] = "time" class="form-control">
+            </div>
+          </td>
+          <td>
+              <!-- <input type="submit" value="Submit" class="btn btn-success"> -->
+              <button class="btn btn-success" (click)="addOrUpdate()">Submit</button>
+              <button class="btn btn-secondary" (click)="clear()">Clear</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</form>
+</div>
 
 
 
-  <!-- <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Tasks and Time</h4>
-        <table class="table table-hover">
-          
-          <thead>
-            <tr>
-              <th>Number</th>
-              <th>Task</th>
-              <th>Time</th>
-              <th>Options</th>
-            </tr>
-          </thead>
-    
-          <tbody>
-            <tr *ngFor = "let task of tasks; let i = index">
-              <td>{{i+1}}</td>
-              <td>{{task.name}}</td>
-              <td>{{task.time}}</td>
-              <td>
-                <button class="btn btn-secondary" (click)="deleteTask(task)">Finished</button>
-                <button class="btn btn-success" (click)="edit(task)" >Edit</button>
-              </td>
-            </tr>
-          </tbody>
-    
-        </table>
-      </div>
-    </div> -->
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Goals and Time</h4>
+    <table class="table table-hover">
+      
+      <thead>
+        <tr>
+          <!-- <th>ID</th> -->
+          <th>Number</th>
+          <th>Goals</th>
+          <th>Time</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor = "let task of hack(tasks); let i = index">
+          <td>{{i+1}}</td>
+          <td>{{task.name}}</td>
+          <td>{{task.time}}</td>
+          <td>
+            <button class="btn btn-secondary" (click)="deleteTask(task)">Finished</button>
+            <button class="btn btn-success" (click)="edit(task)" >Edit</button>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+</div>

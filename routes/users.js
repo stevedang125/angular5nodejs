@@ -40,9 +40,12 @@ router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res
 
 // login 
 router.post('/authentication', (req, res, next)=>{
+
+    // Get the input data from the post request
     const username = req.body.username;
     const password = req.body.password;
     
+    // Find the user by username:
     User.getUserByUsername(username, (err, user) => {
         if(err){
             throw err;
@@ -52,11 +55,14 @@ router.post('/authentication', (req, res, next)=>{
             return res.json({ success:false, msg:'User not found!' });
         }
         
+    // If found, compare the password:
         User.comparePassword(password, user.password, (err, isMatch) => {
             if(err){
                 throw err;
             }
             
+            // if the password is matched, generate a token,
+            // send back the token + the user infor to store into the local storage:
             if(isMatch){
                 const token = jwt.sign(user.toJSON(), config.secret,{expiresIn:604800});
                 res.json({
@@ -69,28 +75,27 @@ router.post('/authentication', (req, res, next)=>{
                         email: user.email
                     }
             });
-              
+            // end of if the password is matched
             } else{
                 return res.json({success:false, msg:'Wrong password!'});
             }
         });
     });
-});
+}); // close of login post
 
-
+// Fetch the right list of the right owner/user back to the frontend
 router.get('/dashboard', passport.authenticate('jwt', {session: false}), (req, res, next)=>{
-    console.log('Im here in backend for Dashboard '+req.user.id);
-
+    
     var user_id = new ObjectId(req.user.id);
-    console.log('=================the user_id is: '+user_id)
     var query = Task.find({});
     query.where('user_id', user_id);
 
+    // Search for the tasks with the F.Key of the same user.
     query.exec(function(err, tasklist){
         if(err){
-            console.log('There is an erro from get method: '+err);
+            console.log('Error! ** Search for tasks with same owner: '+err);
         }else{
-            console.log('Success! res back to auth')
+            console.log('Success! Sending back the list to the frontend.')
             res.status(200).json({user: req.user, tasklist: tasklist});
         }
     });

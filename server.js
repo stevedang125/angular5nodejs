@@ -51,9 +51,6 @@ app.use('/users', tasks);
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });
-// app.get('/', (req, res) =>{
-//     res.send('Home page. ');
-// });
 
 http.createServer(app).listen(port, () =>{
     console.log('The magical back end is running on port: '+port);

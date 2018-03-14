@@ -11,9 +11,8 @@ import { Task } from '../task'
 export class DashboardComponent implements OnInit {
   
   task:Task;
-
   tasks:Task[];
-
+  
   _id:string = null;
   name:string;
   time:string;
@@ -24,128 +23,93 @@ export class DashboardComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private router: Router) { }
-  
 
   ngOnInit() {
     this.fetchDashboard();
-
-    //this.getTasks();
   }// close ngOnInit()
 
-
+  // Fetch the task list from the database:
   fetchDashboard(){
       this.authService.getDashboard().subscribe(profile =>{
       this.user = profile['user'];
-      
       this.userID = profile['user']._id;
-
       this.tasks = profile['tasklist'];
-      //console.log('************************* on init: '+this.userID);
     },
       err => {
-        console.log('subcribe err, auth service navigating back to /');
+        console.log('Fetch Failed! Navigating back to homepage /, err msg: '+err);
         this.router.navigate(['/']);
         return false;
     });
   }
 
+  // For fun solution, debugging
   hack(val){
-    //console.log('Before:');
-    //console.log(val);
-    // val = Object.values;
-    // console.log('After:');
-    // console.log(val);
-
     return val;
   }
 
-  getTasks(){
-    this.authService.getTasks().subscribe(data =>{
-      //console.log('Got the data: '+data);
-      this.tasks = data['msg'];
-      
-    }, error =>{
-      console.log('There is an error: '+error);
-      console.log(error);
-    });
-  }
-
   addOrUpdate(){
-    // if(this.task.user_id == undefined){
-    //   this.authService.addTask(this.task).subscribe(data =>{
-    //     console.log('the data is: '+data);
-        
-    //   }, error=>{
-    //     console.log('you got an err: '+error);
-    //   })
-    // }
-
-    //console.log(this.name);
-    //console.log(this.time);
-
+    // Create a new Task to hold the input infor from the form
     const newTask = {
       _id: this._id,
       name: this.name,
       time: this.time,
       user_id: this.userID
     }
-    //console.log('newtask id: '+newTask._id);
-    //console.log('newtask name: '+newTask.name);
-    //console.log('newtask time: '+newTask.time);
-    //console.log('newtask user_id: '+newTask.user_id);
-    
 
+    // If the id is null => new task being added
+    // else the id != null => updating an existing task
     if(newTask._id == null){
-      console.log('Im here in added new: =====');
       this.authService.addTask(newTask).subscribe(data =>{
-        console.log('the data res back is: '+data);
+        //console.log('Success! Task added.'+data);
       }, error =>{
-        console.log('Error data ***** : '+error);
+        console.log('Add Task Failed, here is the error: '+error);
       });
     }else {
       if(newTask._id != null){
-        console.log('Im here in update new: =====');
         this.authService.updateTask(newTask).subscribe(data =>{
-          console.log('Success! Task list updated.'+data);
+          //console.log('Success! Task updated.'+data);
         }, err =>{
-            console.log('Failed to update a task, errmsg: '+err);
+            console.log('Update Task Failed, here is the err msg: '+err);
         });
       }
     }
     
+    // Fetch the data from the data to update the list:
     this.fetchDashboard();
+    // Double fetch in case the internet speed is laggy >__<
     this.fetchDashboard();
+
+    // Reset the form (for now temp. solution)
     this._id = null;
     this.name = null;
     this.time = null;
     this.user_id = null;
 
-    //try null
+  } // close of AddOrUpdate
+
+  clear(){
+    this._id = null;
+    this.name = null;
+    this.time = null;
+    this.user_id = null;
   }
 
+  // fetch the date that needed to be updated into the form to submit
   edit(task){
-    console.log('Im in edit:=========================');
-    console.log(task._id);
-    console.log(task.name);
-    console.log(task.time);
-    console.log(task.user_id);
     this._id = task._id;
     this.name = task.name;
     this.time = task.time;
     this.user_id = task.user_id;
-  }
+  } // close of edit 
 
   deleteTask(task){
-    console.log(task._id);
-    console.log(task.name);
-    console.log(task.time);
-    console.log(task.user_id);
     this.authService.deleteTask(task).subscribe(data =>{
-      console.log('Success! Deleted a task: '+data);
+      //console.log('Success! Deleted a task: '+data);
       this.tasks.splice(this.tasks.indexOf(task), 1);
     }, err =>{
-      console.log('Failed to delete a task: '+err);
-    })
-  }
+      console.log('Delete Task Failed, here is the err msg: '+err);
+    });
+
+  }// close of deleteTask
 
 }// close export()
