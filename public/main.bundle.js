@@ -122,16 +122,17 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/esm5/forms.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__("./src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__navbar_navbar_component__ = __webpack_require__("./src/app/navbar/navbar.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__about_about_component__ = __webpack_require__("./src/app/about/about.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__register_register_component__ = __webpack_require__("./src/app/register/register.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__home_home_component__ = __webpack_require__("./src/app/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__dashboard_dashboard_component__ = __webpack_require__("./src/app/dashboard/dashboard.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__profile_profile_component__ = __webpack_require__("./src/app/profile/profile.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_validate_service__ = __webpack_require__("./src/app/services/validate.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_auth_service__ = __webpack_require__("./src/app/services/auth.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_guard_service__ = __webpack_require__("./src/app/services/guard.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_amazing_time_picker__ = __webpack_require__("./node_modules/amazing-time-picker/amazing-time-picker.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__("./src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__navbar_navbar_component__ = __webpack_require__("./src/app/navbar/navbar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__about_about_component__ = __webpack_require__("./src/app/about/about.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__register_register_component__ = __webpack_require__("./src/app/register/register.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__home_home_component__ = __webpack_require__("./src/app/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__dashboard_dashboard_component__ = __webpack_require__("./src/app/dashboard/dashboard.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__profile_profile_component__ = __webpack_require__("./src/app/profile/profile.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_validate_service__ = __webpack_require__("./src/app/services/validate.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_auth_service__ = __webpack_require__("./src/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_guard_service__ = __webpack_require__("./src/app/services/guard.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -141,6 +142,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 // import array:
+
 
 
 
@@ -160,11 +162,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 // import { ToastModule } from 'ng2-toastr/ng2-toastr';
 // import { BrowserAnimationsModule } from '@angular/platform-browser';
 var appRoutes = [
-    { path: '', component: __WEBPACK_IMPORTED_MODULE_9__home_home_component__["a" /* HomeComponent */] },
-    { path: 'register', component: __WEBPACK_IMPORTED_MODULE_8__register_register_component__["a" /* RegisterComponent */] },
-    { path: 'dashboard', component: __WEBPACK_IMPORTED_MODULE_10__dashboard_dashboard_component__["a" /* DashboardComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_14__services_guard_service__["a" /* AuthGuardService */]] },
-    { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_11__profile_profile_component__["a" /* ProfileComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_14__services_guard_service__["a" /* AuthGuardService */]] },
-    { path: 'about', component: __WEBPACK_IMPORTED_MODULE_7__about_about_component__["a" /* AboutComponent */] },
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_10__home_home_component__["a" /* HomeComponent */] },
+    { path: 'register', component: __WEBPACK_IMPORTED_MODULE_9__register_register_component__["a" /* RegisterComponent */] },
+    { path: 'dashboard', component: __WEBPACK_IMPORTED_MODULE_11__dashboard_dashboard_component__["a" /* DashboardComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_15__services_guard_service__["a" /* AuthGuardService */]] },
+    { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_12__profile_profile_component__["a" /* ProfileComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_15__services_guard_service__["a" /* AuthGuardService */]] },
+    { path: 'about', component: __WEBPACK_IMPORTED_MODULE_8__about_about_component__["a" /* AboutComponent */] },
     { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 var AppModule = /** @class */ (function () {
@@ -173,22 +175,23 @@ var AppModule = /** @class */ (function () {
     AppModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
-                __WEBPACK_IMPORTED_MODULE_6__navbar_navbar_component__["a" /* NavbarComponent */],
-                __WEBPACK_IMPORTED_MODULE_7__about_about_component__["a" /* AboutComponent */],
-                __WEBPACK_IMPORTED_MODULE_8__register_register_component__["a" /* RegisterComponent */],
-                __WEBPACK_IMPORTED_MODULE_9__home_home_component__["a" /* HomeComponent */],
-                __WEBPACK_IMPORTED_MODULE_10__dashboard_dashboard_component__["a" /* DashboardComponent */],
-                __WEBPACK_IMPORTED_MODULE_11__profile_profile_component__["a" /* ProfileComponent */]
+                __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */],
+                __WEBPACK_IMPORTED_MODULE_7__navbar_navbar_component__["a" /* NavbarComponent */],
+                __WEBPACK_IMPORTED_MODULE_8__about_about_component__["a" /* AboutComponent */],
+                __WEBPACK_IMPORTED_MODULE_9__register_register_component__["a" /* RegisterComponent */],
+                __WEBPACK_IMPORTED_MODULE_10__home_home_component__["a" /* HomeComponent */],
+                __WEBPACK_IMPORTED_MODULE_11__dashboard_dashboard_component__["a" /* DashboardComponent */],
+                __WEBPACK_IMPORTED_MODULE_12__profile_profile_component__["a" /* ProfileComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClientModule */],
                 __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormsModule */],
+                __WEBPACK_IMPORTED_MODULE_5_amazing_time_picker__["a" /* AmazingTimePickerModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* RouterModule */].forRoot(appRoutes)
             ],
-            providers: [__WEBPACK_IMPORTED_MODULE_12__services_validate_service__["a" /* ValidateService */], __WEBPACK_IMPORTED_MODULE_13__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_14__services_guard_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClientModule */]],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
+            providers: [__WEBPACK_IMPORTED_MODULE_13__services_validate_service__["a" /* ValidateService */], __WEBPACK_IMPORTED_MODULE_14__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_15__services_guard_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClientModule */]],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
     return AppModule;
@@ -208,7 +211,7 @@ module.exports = ""
 /***/ "./src/app/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"user\" class=\"card\">\n    <h2 class=\"page-header\">{{user.name}}'s Daily Goals</h2>\n</div>\n\n<div class=\"card\">\n<!-- <form (ngSubmit)=\"addOrUpdate()\"> -->\n<form>\n  <div class=\"card-body\">\n    <h4 class=\"card-title\"><strong>Add A Goal</strong></h4>\n    <table class=\"table table-hover\">\n      <thead>\n        <tr>\n          <th><h6><strong>Goal</strong></h6></th>\n          <th><h6><strong>Time</strong></h6></th>\n          <th></th>\n        </tr>\n      </thead>\n\n      <tbody>\n        <tr>\n          <td>\n            <div class=\"form-group\">\n                <input type=\"text\" name=\"name\" [(ngModel)] = \"name\" class=\"form-control\">\n            </div>\n          </td>\n          <td>\n            <div class=\"form-group\">\n                <input type=\"text\" name=\"time\" [(ngModel)] = \"time\" class=\"form-control\">\n            </div>\n          </td>\n          <td>\n              <!-- <input type=\"submit\" value=\"Submit\" class=\"btn btn-success\"> -->\n              <button class=\"btn btn-success\" (click)=\"addOrUpdate()\">Submit</button>\n              <button class=\"btn btn-danger\" (click)=\"clear()\">Clear</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</form>\n</div>\n\n\n\n<div class=\"card\">\n  <div class=\"card-body\">\n    <h4 class=\"card-title\"><strong>Goals and Time</strong></h4>\n    <table class=\"table table-hover\">\n      \n      <thead>\n        <tr>\n          <!-- <th>ID</th> -->\n          <th><h6><strong>Number</strong></h6></th>\n          <th><h6><strong>Goals</strong></h6></th>\n          <th><h6><strong>Time</strong></h6></th>\n          <th><h6><strong>Options</strong></h6></th>\n        </tr>\n      </thead>\n\n      <tbody>\n        <tr *ngFor = \"let task of hack(tasks); let i = index\">\n          <td><h6>{{i+1}}</h6></td>\n          <td><h6>{{task.name}}</h6></td>\n          <td><h6>{{task.time}}</h6></td>\n          <td>\n            <button class=\"btn btn-danger\" (click)=\"deleteTask(task)\">Finished</button>\n            <button class=\"btn btn-info\" (click)=\"edit(task)\" >Edit</button>\n          </td>\n        </tr>\n      </tbody>\n\n    </table>\n  </div>\n</div>\n"
+module.exports = "<div *ngIf=\"user\" class=\"card\">\n    <h2 class=\"page-header\">{{user.name}}'s Daily Goals</h2>\n</div>\n\n<div class=\"card\">\n<!-- <form (ngSubmit)=\"addOrUpdate()\"> -->\n<form>\n  <div class=\"card-body\">\n    <h4 class=\"card-title\"><strong>Add A Goal</strong></h4>\n    <table class=\"table table-hover\">\n      <thead>\n        <tr>\n          <th><h6><strong>Goal</strong></h6></th>\n          <th><h6><strong>Time</strong></h6></th>\n          <th></th>\n        </tr>\n      </thead>\n\n      <tbody>\n        <tr>\n          <td>\n            <div class=\"form-group\">\n                <input type=\"text\" name=\"name\" [(ngModel)] = \"name\" class=\"form-control\">\n            </div>\n          </td>\n          <td>\n            <div class=\"form-group\">\n                <!-- <input type=\"text\" name=\"time\" [(ngModel)] = \"time\" class=\"form-control\"> -->\n                <input type=\"time\" atp-time-picker value=\"{{time}}\" name=\"time\" [(ngModel)] = \"time\" class=\"form-control\">\n            </div>\n          </td>\n          <td>\n              <!-- <input type=\"submit\" value=\"Submit\" class=\"btn btn-success\"> -->\n              <button class=\"btn btn-success\" (click)=\"addOrUpdate()\">Submit</button>&nbsp;\n              <button class=\"btn btn-danger\" (click)=\"clear()\">Clear</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</form>\n</div>\n\n\n\n<div class=\"card\">\n  <div class=\"card-body\">\n    <h4 class=\"card-title\"><strong>Goals and Time</strong></h4>\n    <table class=\"table table-hover\">\n      \n      <thead>\n        <tr>\n          <!-- <th>ID</th> -->\n          <th><h6><strong>Number</strong></h6></th>\n          <th><h6><strong>Goals</strong></h6></th>\n          <th><h6><strong>Time</strong></h6></th>\n          <th><h6><strong>Options</strong></h6></th>\n        </tr>\n      </thead>\n\n      <tbody>\n        <tr *ngFor = \"let task of hack(tasks); let i = index\">\n          <td><h6>{{i+1}}</h6></td>\n          <td><h6>{{task.name}}</h6></td>\n          <td><h6>{{task.time}}</h6></td>\n          <td>\n            <button class=\"btn btn-danger\" (click)=\"deleteTask(task)\">Finished</button>&nbsp;\n            <button class=\"btn btn-info\" (click)=\"edit(task)\" >Edit</button>\n          </td>\n        </tr>\n      </tbody>\n\n    </table>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -220,6 +223,7 @@ module.exports = "<div *ngIf=\"user\" class=\"card\">\n    <h2 class=\"page-head
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__("./src/app/services/auth.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_amazing_time_picker__ = __webpack_require__("./node_modules/amazing-time-picker/amazing-time-picker.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -232,10 +236,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var DashboardComponent = /** @class */ (function () {
-    function DashboardComponent(authService, router) {
+    function DashboardComponent(authService, router, atp) {
         this.authService = authService;
         this.router = router;
+        this.atp = atp;
         this._id = null;
     }
     DashboardComponent.prototype.ngOnInit = function () {
@@ -323,7 +329,8 @@ var DashboardComponent = /** @class */ (function () {
             styles: [__webpack_require__("./src/app/dashboard/dashboard.component.css")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]])
+            __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_3_amazing_time_picker__["b" /* AmazingTimePickerService */]])
     ], DashboardComponent);
     return DashboardComponent;
 }()); // close export()

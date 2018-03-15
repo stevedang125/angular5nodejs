@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService }  from '../services/auth.service';
 import { Router, Route } from '@angular/router';
-import { Task } from '../task'
+import { Task } from '../task';
+import { AmazingTimePickerService } from 'amazing-time-picker';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,9 +21,11 @@ export class DashboardComponent implements OnInit {
 
   user: Object;
   userID: string;
+  selectedTime:any;
 
   constructor(private authService: AuthService,
-              private router: Router) { }
+              private router: Router,
+              private atp: AmazingTimePickerService) { }
 
   ngOnInit() {
     this.fetchDashboard();

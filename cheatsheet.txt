@@ -526,8 +526,21 @@
                 });
             }
         
+ # 11. Add time picker feature:
+    Source: https://www.youtube.com/watch?v=ptb7IkynmVM
+            https://owsolutions.github.io/amazing-time-picker/Examples
+            https://owsolutions.github.io/amazing-time-picker/API
 
+    Add to app.module
+        import { AmazingTimePickerModule } from 'amazing-time-picker';
+        import array: AmazingTimePickerModule
+    
+    DashboardComponent.ts:
+        import { AmazingTimePickerService } from 'amazing-time-picker';
+        private atp: AmazingTimePickerService
 
+    DashboardComponent.html:
+        <input type="time" atp-time-picker value="{{time}}" name="time" [(ngModel)] = "time" class="form-control">
 
 
 

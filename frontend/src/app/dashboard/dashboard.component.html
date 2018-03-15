@@ -25,12 +25,13 @@
           </td>
           <td>
             <div class="form-group">
-                <input type="text" name="time" [(ngModel)] = "time" class="form-control">
+                <!-- <input type="text" name="time" [(ngModel)] = "time" class="form-control"> -->
+                <input type="time" atp-time-picker value="{{time}}" name="time" [(ngModel)] = "time" class="form-control">
             </div>
           </td>
           <td>
               <!-- <input type="submit" value="Submit" class="btn btn-success"> -->
-              <button class="btn btn-success" (click)="addOrUpdate()">Submit</button>
+              <button class="btn btn-success" (click)="addOrUpdate()">Submit</button>&nbsp;
               <button class="btn btn-danger" (click)="clear()">Clear</button>
           </td>
         </tr>
@@ -63,7 +64,7 @@
           <td><h6>{{task.name}}</h6></td>
           <td><h6>{{task.time}}</h6></td>
           <td>
-            <button class="btn btn-danger" (click)="deleteTask(task)">Finished</button>
+            <button class="btn btn-danger" (click)="deleteTask(task)">Finished</button>&nbsp;
             <button class="btn btn-info" (click)="edit(task)" >Edit</button>
           </td>
         </tr>

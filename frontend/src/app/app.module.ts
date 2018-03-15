@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
 
 // declarations array:
 import { AppComponent } from './app.component';
@@ -47,6 +48,7 @@ const appRoutes: Routes =[
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    AmazingTimePickerModule,
     RouterModule.forRoot(appRoutes)
    
   ],
