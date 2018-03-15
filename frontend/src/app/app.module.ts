@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // declarations array:
 import { AppComponent } from './app.component';
@@ -49,6 +51,8 @@ const appRoutes: Routes =[
     HttpClientModule,
     FormsModule,
     AmazingTimePickerModule,
+    BrowserAnimationsModule,
+    ToastModule.forRoot(),
     RouterModule.forRoot(appRoutes)
    
   ],

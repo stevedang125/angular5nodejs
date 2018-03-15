@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { AuthService }  from '../services/auth.service';
 import { Router, Route } from '@angular/router';
 import { Task } from '../task';
 import { AmazingTimePickerService } from 'amazing-time-picker';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,11 +26,45 @@ export class DashboardComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private router: Router,
-              private atp: AmazingTimePickerService) { }
+              private atp: AmazingTimePickerService,
+              public toastr: ToastsManager, vcr: ViewContainerRef) {
+
+    this.toastr.setRootViewContainerRef(vcr);
+  }
 
   ngOnInit() {
     this.fetchDashboard();
   }// close ngOnInit()
+
+  showSuccess() {
+    this.toastr.success('Added/Updated The Task!', 'Success!');
+  }
+
+  showDelete() {
+    this.toastr.success('Deleted The Task!', 'Success!');
+  }
+
+  showClear() {
+    this.toastr.info('Cleared The Form!', 'Success!');
+  }
+
+  showEdit() {
+    this.toastr.warning('A Task Is Being Updated.', 'Alert!');
+  }
+
+  // showError() {
+  //   this.toastr.error('This is not good!', 'Oops!');
+  // }
+  showWarning() {
+    this.toastr.warning('Please Fill In All Fields.', 'Alert!');
+  }
+  // showInfo() {
+  //   this.toastr.info('Just some information for you.');
+  // }
+  
+  // showCustom() {
+  //   this.toastr.custom('<span style="color: red">Message in red.</span>', null, {enableHTML: true});
+  // }
 
   // Fetch the task list from the database:
   fetchDashboard(){
@@ -51,6 +86,13 @@ export class DashboardComponent implements OnInit {
   }
 
   addOrUpdate(){
+    
+    if(this.name == null || this.time == null)
+    {
+      this.showWarning();
+      return false;
+    }
+
     // Create a new Task to hold the input infor from the form
     const newTask = {
       _id: this._id,
@@ -88,6 +130,8 @@ export class DashboardComponent implements OnInit {
     this.time = null;
     this.user_id = null;
 
+    this.showSuccess();
+
   } // close of AddOrUpdate
 
   clear(){
@@ -95,6 +139,7 @@ export class DashboardComponent implements OnInit {
     this.name = null;
     this.time = null;
     this.user_id = null;
+    this.showClear();
   }
 
   // fetch the date that needed to be updated into the form to submit
@@ -103,6 +148,7 @@ export class DashboardComponent implements OnInit {
     this.name = task.name;
     this.time = task.time;
     this.user_id = task.user_id;
+    this.showEdit();
   } // close of edit 
 
   deleteTask(task){
@@ -112,7 +158,7 @@ export class DashboardComponent implements OnInit {
     }, err =>{
       console.log('Delete Task Failed, here is the err msg: '+err);
     });
-
+    this.showDelete();
   }// close of deleteTask
 
 }// close export()

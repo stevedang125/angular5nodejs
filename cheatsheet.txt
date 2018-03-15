@@ -542,6 +542,18 @@
     DashboardComponent.html:
         <input type="time" atp-time-picker value="{{time}}" name="time" [(ngModel)] = "time" class="form-control">
 
+    Maybe helpful in the future:
+        https://www.npmjs.com/package/ngx-date-time-picker
+        https://www.npmjs.com/package/ng-pick-datetime
+        https://danielykpan.github.io/date-time-picker/
+        https://www.youtube.com/watch?v=f0tlQtHVhKY
+        https://www.youtube.com/watch?v=edaN6iCcqP4
+
+ # 12. Add toastr messages instead for the alert box:
+        https://github.com/CodeSeven/toastr
+        https://www.thetechieshouse.com/use-alert-toast-notifications-in-angular-4/
+        https://github.com/PointInside/ng2-toastr#toastoptions-configurations
+
 
 
 

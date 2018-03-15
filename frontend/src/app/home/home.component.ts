@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ValidateService } from '../services/validate.service';
 import { AuthService } from '../services/auth.service';
 import { Router, Route } from '@angular/router';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-home',
@@ -17,13 +18,30 @@ export class HomeComponent implements OnInit {
 
   constructor(private validateService: ValidateService,
               private authService: AuthService,
-              private router: Router) { }
+              private router: Router,
+              public toastr: ToastsManager, vcr: ViewContainerRef) {
+                this.toastr.setRootViewContainerRef(vcr);
+               }
 
   ngOnInit() {
     
   }
 
- 
+  showSuccess() {
+    this.toastr.success('You Have Logged In!', 'Success!');
+  }
+
+  showError(message) {
+    this.toastr.error(message, 'Oops!');
+  }
+
+  showWarning() {
+    this.toastr.warning('Please Fill In All Fields.', 'Alert!');
+  }
+  
+  // showCustom() {
+  //   this.toastr.custom('<span style="color: red">Message in red.</span>', null, {enableHTML: true});
+  // }
 
   onLoginSubmit(){
     const user = {
@@ -34,7 +52,8 @@ export class HomeComponent implements OnInit {
     // Require fields:
     if(!this.validateService.validateLogin(user)){
       //this.flashMessage.show('Please fill in all fields',{cssClass: 'alert-danger', timeout: 5000});
-      alert('Please fill in all fields');
+      //alert('Please fill in all fields');
+      this.showWarning();
       return false;
     }
 
@@ -52,8 +71,10 @@ export class HomeComponent implements OnInit {
 
         this.authService.storeUserData(token, userObject);
         
-        alert('You have logged in');
+        //alert('You have logged in');
         // this.login_messages = true;
+
+        this.showSuccess();
 
         this.authService.setSignIn();
 
@@ -61,11 +82,14 @@ export class HomeComponent implements OnInit {
       }
       if(!success)
       {
-        alert(data['msg']);
+        //alert(data['msg']);
+        this.showError(data['msg']);
         this.router.navigate(['/']);
       }
     }, error=> {
-        alert('Oh no! Something went wrong. Please check again');
+
+        this.showError('Oh no! Something went wrong. Please check again');
+        //alert('Oh no! Something went wrong. Please check again');
         this.router.navigate(['/']);
     });
    
