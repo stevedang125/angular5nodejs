@@ -21,6 +21,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service'; 
 import { AuthGuardService } from './services/guard.service';
+import { FilterPipe } from './services/filter.pipe';
 
 
 // //Import toast module
@@ -44,7 +45,8 @@ const appRoutes: Routes =[
     RegisterComponent,
     HomeComponent,
     DashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

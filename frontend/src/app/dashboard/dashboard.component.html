@@ -19,7 +19,7 @@
       </thead>
 
       <tbody>
-        <tr *ngFor = "let task of hack(tasks); let i = index">
+        <tr *ngFor = "let task of hack(tasks) | filter:inputString; let i = index">
           <td><h6>{{i+1}}</h6></td>
           <td><h6>{{task.name}}</h6></td>
           <td><h6>{{task.time}}</h6></td>
@@ -47,7 +47,7 @@
                 <tr>
                   <td>
                     <div class="form-group">
-                        <input type="text" name="search" [(ngModel)] = "search" class="form-control">
+                        <input type="text" name="inputString" [(ngModel)] = "inputString" class="form-control">
                     </div>
                   </td>
                 </tr>
@@ -109,3 +109,5 @@
   </div>
 
 </div>
+
+<h2>{{date}}</h2>

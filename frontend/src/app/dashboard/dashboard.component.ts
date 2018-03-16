@@ -12,6 +12,10 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 })
 export class DashboardComponent implements OnInit {
   
+  public date = new Date();
+
+  inputString:string;
+
   task:Task;
   tasks:Task[];
   
@@ -52,12 +56,14 @@ export class DashboardComponent implements OnInit {
     this.toastr.warning('A Task Is Being Updated.', 'Alert!');
   }
 
-  // showError() {
-  //   this.toastr.error('This is not good!', 'Oops!');
-  // }
+  showError(msg) {
+    this.toastr.error(msg, 'Oops!');
+  }
+
   showWarning() {
     this.toastr.warning('Please Fill In All Fields.', 'Alert!');
   }
+
   // showInfo() {
   //   this.toastr.info('Just some information for you.');
   // }
@@ -135,10 +141,23 @@ export class DashboardComponent implements OnInit {
   } // close of AddOrUpdate
 
   clear(){
-    this._id = null;
-    this.name = null;
-    this.time = null;
-    this.user_id = null;
+    if(this.name == undefined && this.time == undefined){
+      this.showError('There is nothing to clear!');
+      return false;
+    }
+    this._id = undefined;
+    this.name = undefined;
+    this.time = undefined;
+    this.user_id = undefined;
+    this.showClear();
+  }
+
+  clearSearch(){
+    if(this.inputString == undefined){
+      this.showError('There is nothing to clear!');
+      return false;
+    }
+    this.inputString = undefined;
     this.showClear();
   }
 

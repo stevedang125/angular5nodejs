@@ -554,7 +554,35 @@
         https://www.thetechieshouse.com/use-alert-toast-notifications-in-angular-4/
         https://github.com/PointInside/ng2-toastr#toastoptions-configurations
 
+ # 13. Add the search feature, clear the search box:(using Pipe)
+    Generate the pipe in src/app/services: (ng g pipe <name>) ng g pipe filter
 
+    Change the transform method to take in 2 parameters:(/filter.pipe.ts)
+        an array: tasks
+        compare val: inputString
+
+        transform(tasks: any, inputString: any): any {
+            // Check if the search inputString is empty/undefined
+            if(inputString === undefined){
+            return tasks;
+            }
+            // If there is input string to search:
+            return tasks.filter(function(retVal){
+            return retVal.name.toLowerCase().includes(inputString.toLowerCase());
+            }); 
+        }
+    
+    Init. the inputString val as string type:(component.ts)
+        inputString:string;
+    
+    Use the pipe in the html as:(component.html)
+        Search box:
+        <input type="text" name="inputString" [(ngModel)] = "inputString" class="form-control">
+
+        List by *ngFor:
+        <tr *ngFor = "let task of hack(tasks) | filter:inputString; let i = index">
+
+ 
 
 
 
