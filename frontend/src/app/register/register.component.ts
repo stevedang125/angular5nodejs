@@ -19,7 +19,9 @@ export class RegisterComponent implements OnInit {
   constructor(private validateService: ValidateService,
               private authService: AuthService,
               private router: Router,
-              public toastr: ToastsManager, vcr: ViewContainerRef) { }
+              public toastr: ToastsManager, vcr: ViewContainerRef) { 
+                this.toastr.setRootViewContainerRef(vcr);
+              }
 
   ngOnInit() {
     
@@ -41,7 +43,20 @@ export class RegisterComponent implements OnInit {
     this.toastr.error('Something went wrong, please try again later!', 'Oops!');
   }
 
+  onCancelSubmit(){
+    this.username = undefined;
+    this.name = undefined;
+    this.email = undefined;
+    this.password = undefined;
+  }
+
   onRegisterSubmit(){
+    if( (this.name || this.email || this.username || this.password) == undefined){
+      this.showWarning();
+      return false;
+    }
+  
+
   const user = {
       name: this.name,
       email: this.email,

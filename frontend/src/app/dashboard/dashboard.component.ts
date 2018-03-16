@@ -151,6 +151,13 @@ export class DashboardComponent implements OnInit {
     this.showClear();
   }
 
+  search(){
+    if(this.inputString == undefined){
+      this.showError('Empty search box!');
+      return false;
+    }
+  }
+
   clearSearch(){
     if(this.inputString == undefined){
       this.showError('There is nothing to clear!');

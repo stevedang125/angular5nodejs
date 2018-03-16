@@ -1,6 +1,6 @@
-<div *ngIf="user" class="header">
+<!-- <div *ngIf="user" class="header">
     <h2 class="page-header">{{user.name}}'s Daily Goals</h2>
-</div>
+</div> -->
 
 <div class="row">
 <div class="column left scrolling">
@@ -8,7 +8,6 @@
   <div class="card-body">
     <h4 class="card-title"><strong>Goals and Time</strong></h4>
     <table class="table table-hover">
-      
       <thead>
         <tr>
           <th><h6><strong>Number</strong></h6></th>
@@ -17,7 +16,6 @@
           <th><h6><strong>Options</strong></h6></th>
         </tr>
       </thead>
-
       <tbody>
         <tr *ngFor = "let task of hack(tasks) | filter:inputString; let i = index">
           <td><h6>{{i+1}}</h6></td>
@@ -29,15 +27,11 @@
           </td>
         </tr>
       </tbody>
-
     </table>
   </div>
 </div>
-
 </div>
-
 <div class="column right">
-
     <div class="card">
         <form>
           <div class="card-body">
@@ -60,21 +54,11 @@
           </div>
         </form>
     </div>
-
 <div class="card">
-    <!-- <form (ngSubmit)="addOrUpdate()"> -->
     <form>
       <div class="card-body">
         <h4 class="card-title"><strong>Add A Goal</strong></h4>
         <table class="table table-hover">
-          <!-- <thead>
-            <tr>
-              <th><h6><strong>Goal</strong></h6></th>
-              <th><h6><strong>Time</strong></h6></th>
-              <th></th>
-            </tr>
-          </thead> -->
-    
           <tbody>
             <tr>
               <td>
@@ -105,9 +89,5 @@
       </div>
     </form>
     </div>
-
   </div>
-
 </div>
-
-<h2>{{date}}</h2>

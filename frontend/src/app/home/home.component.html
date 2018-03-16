@@ -1,4 +1,6 @@
+<html>
 
+<div class="container">
 <div class="jumbotron center">
   <h1>Daily Goals App</h1>
   <p class="lead">
@@ -13,10 +15,12 @@
     <strong>Success!</strong> You have logged in! *******
 </div> -->
 
+<div class="row">
 
-<div *ngIf="!authService.signedIn()">
+
+<div class="column loginRight" *ngIf="!authService.signedIn()">
   <h2 class="page-header">Login</h2>
-  <form class="form-signin" (submit)="onLoginSubmit()">
+  <form class="form-signin">
           <div class="form-group">
             <label for="Username">Username</label>
             <input type="text" class="form-control" placeholder="Enter Username" [(ngModel)]="username" name="username">
@@ -30,7 +34,15 @@
               <input type="checkbox" value="remember-me"> Remember me
             </label>
           </div>
-          <input class="btn btn-lg btn-success" type="submit" value="Login"><br><br>
+          <!-- <input class="btn btn-lg btn-success" type="submit" value="Login"><br><br> -->
+          <button class="btn btn-success" (click)="onLoginSubmit()">Login</button>&nbsp;
+            <button class="btn btn-danger" (click)="onCancelSubmit()">Cancel</button><br><br>
           <p>Don't have an account yet? <a [routerLink] = "['/register']">Register Here</a></p> 
   </form>
 </div>
+
+</div>
+
+</div>
+
+</html>

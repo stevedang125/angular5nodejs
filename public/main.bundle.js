@@ -20,14 +20,14 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /***/ "./src/app/about/about.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".list-group-item {\r\n    background-color: rgba(0, 0, 0, 0.3);\r\n    width: 100%;\r\n}\r\n\r\n.column {\r\n    float: left;\r\n    padding: 0px;\r\n    height: 100%;\r\n    margin-top: -1px;\r\n}\r\n\r\n/* .aboutRight {\r\n    width: 75%;\r\n    padding: 50px 0px 0px 100px;\r\n} */\r\n\r\n.left {\r\n    width: 60%;\r\n    max-height: 590px;\r\n    padding: 50px 0px 0px 230px;\r\n  }\r\n\r\n.right {\r\n    width: 40%;\r\n    padding: 97px 0px 0px 20px;\r\n    /* max-height: 607px; */\r\n}"
 
 /***/ }),
 
 /***/ "./src/app/about/about.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  about works!\n</p>\n"
+module.exports = "    <div class=\"row\">\n        <div class=\"container column left\">\n            <h2 class=\"page-header\" style=\"color: rgb(223, 56, 35)\">What I have used in this project:</h2>\n            <ul class=\"list-group\">\n              <li class=\"list-group-item\">Front-End</li>\n              <li class=\"list-group-item\">Angular 5.2.8, Angular CLI: 1.7.3</li>\n              <li class=\"list-group-item\">RouterModule, Routes from @angular/router</li>\n              <li class=\"list-group-item\">HttpClientModule from @angular/router</li>\n              <li class=\"list-group-item\">FormsModule from @angular/forms</li>\n              <li class=\"list-group-item\">AmazingTimePickerModule from amazing-time-picker</li>\n              <li class=\"list-group-item\">ToastModule from ng2-toastr/ng2-toastr</li>\n              <li class=\"list-group-item\">BrowserAnimationsModule from @angular/platform-browser/animations</li>\n              <li class=\"list-group-item\">ValidateService, AuthService, AuthGuardService, FilterPipe</li>\n            </ul>\n          </div>\n          <div class=\"container column right\">\n              <ul class=\"list-group\">\n                  <li class=\"list-group-item\">Back-End</li>\n                  <li class=\"list-group-item\">Node 9.4.0, Express, Router, Http</li>\n                  <li class=\"list-group-item\">Body-parser, Bcryptjs, Mongoose, MongoDB</li>\n                  <li class=\"list-group-item\">Passport, Passport-jwt, Jsonwebtoken, Cors</li>\n              </ul>          \n          </div>\n        \n        </div>\n        "
 
 /***/ }),
 
@@ -70,14 +70,14 @@ var AboutComponent = /** @class */ (function () {
 /***/ "./src/app/app.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n"
+module.exports = ""
 
 /***/ }),
 
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n<body class=\"main\">\n    \n    <div class=\"container\">\n        \n        <router-outlet></router-outlet>\n    </div>\n    \n    <div class=\"fixed\">\n        <footer class=\"footer\">\n          <p align=\"right\">&copy; 2018 Made with love.</p>\n        </footer>\n    </div>\n</body>\n\n\n"
+module.exports = "<app-navbar></app-navbar>\n<!-- <body class=\"main\"> -->\n<body>\n        \n    \n    <div class=\"bg\">\n        <div class=\"container\">\n            <router-outlet></router-outlet>\n        </div>\n\n        <!-- <div class=\"fixed\"> -->\n                \n        <!-- </div> -->\n\n    </div>\n</body>\n\n\n"
 
 /***/ }),
 
@@ -214,14 +214,14 @@ var AppModule = /** @class */ (function () {
 /***/ "./src/app/dashboard/dashboard.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".card {\r\n    /* background-color: transparent; */\r\n    background-color: rgba(0, 0, 0, 0.315);\r\n    border: 0px;\r\n}"
 
 /***/ }),
 
 /***/ "./src/app/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"user\" class=\"header\">\n    <h2 class=\"page-header\">{{user.name}}'s Daily Goals</h2>\n</div>\n\n<div class=\"row\">\n<div class=\"column left scrolling\">\n<div class=\"card\">\n  <div class=\"card-body\">\n    <h4 class=\"card-title\"><strong>Goals and Time</strong></h4>\n    <table class=\"table table-hover\">\n      \n      <thead>\n        <tr>\n          <th><h6><strong>Number</strong></h6></th>\n          <th><h6><strong>Goals</strong></h6></th>\n          <th><h6><strong>Time</strong></h6></th>\n          <th><h6><strong>Options</strong></h6></th>\n        </tr>\n      </thead>\n\n      <tbody>\n        <tr *ngFor = \"let task of hack(tasks) | filter:inputString; let i = index\">\n          <td><h6>{{i+1}}</h6></td>\n          <td><h6>{{task.name}}</h6></td>\n          <td><h6>{{task.time}}</h6></td>\n          <td>\n            <button class=\"btn btn-danger\" (click)=\"deleteTask(task)\">Finished</button>&nbsp;\n            <button class=\"btn btn-info\" (click)=\"edit(task)\" >Edit</button>\n          </td>\n        </tr>\n      </tbody>\n\n    </table>\n  </div>\n</div>\n\n</div>\n\n<div class=\"column right\">\n\n    <div class=\"card\">\n        <form>\n          <div class=\"card-body\">\n            <h4 class=\"card-title\"><strong>Search</strong></h4>\n            <table class=\"table table-hover\">\n              <tbody>\n                <tr>\n                  <td>\n                    <div class=\"form-group\">\n                        <input type=\"text\" name=\"inputString\" [(ngModel)] = \"inputString\" class=\"form-control\">\n                    </div>\n                  </td>\n                </tr>\n                <tr>\n                  <button class=\"btn btn-success\" (click)=\"search()\">Search</button>&nbsp;\n                  <button class=\"btn btn-danger\" (click)=\"clearSearch()\">Clear</button>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n        </form>\n    </div>\n\n<div class=\"card\">\n    <!-- <form (ngSubmit)=\"addOrUpdate()\"> -->\n    <form>\n      <div class=\"card-body\">\n        <h4 class=\"card-title\"><strong>Add A Goal</strong></h4>\n        <table class=\"table table-hover\">\n          <!-- <thead>\n            <tr>\n              <th><h6><strong>Goal</strong></h6></th>\n              <th><h6><strong>Time</strong></h6></th>\n              <th></th>\n            </tr>\n          </thead> -->\n    \n          <tbody>\n            <tr>\n              <td>\n                <div class=\"form-group\">\n                  <label><h6><strong>Goal</strong></h6></label>\n                    <input type=\"text\" name=\"name\" [(ngModel)] = \"name\" class=\"form-control\">\n                </div>\n              </td>\n            </tr>\n            <tr>\n              <td>\n                <div class=\"form-group\">\n                  <label><h6><strong>Time</strong></h6></label>\n                    <!-- <input type=\"text\" name=\"time\" [(ngModel)] = \"time\" class=\"form-control\"> -->\n                    <input type=\"time\" atp-time-picker value=\"{{time}}\" name=\"time\" [(ngModel)] = \"time\" class=\"form-control\">\n                </div>\n              </td>\n            </tr>\n            <tr>\n              <td>\n                  <!-- <input type=\"submit\" value=\"Submit\" class=\"btn btn-success\"> -->\n                  <button class=\"btn btn-success\" (click)=\"addOrUpdate()\">Submit</button>&nbsp;\n                  <button class=\"btn btn-danger\" (click)=\"clear()\">Clear</button>\n              </td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </form>\n    </div>\n\n  </div>\n\n</div>\n\n<h2>{{date}}</h2>"
+module.exports = "<!-- <div *ngIf=\"user\" class=\"header\">\n    <h2 class=\"page-header\">{{user.name}}'s Daily Goals</h2>\n</div> -->\n\n<div class=\"row\">\n<div class=\"column left scrolling\">\n<div class=\"card\">\n  <div class=\"card-body\">\n    <h4 class=\"card-title\"><strong>Goals and Time</strong></h4>\n    <table class=\"table table-hover\">\n      <thead>\n        <tr>\n          <th><h6><strong>Number</strong></h6></th>\n          <th><h6><strong>Goals</strong></h6></th>\n          <th><h6><strong>Time</strong></h6></th>\n          <th><h6><strong>Options</strong></h6></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor = \"let task of hack(tasks) | filter:inputString; let i = index\">\n          <td><h6>{{i+1}}</h6></td>\n          <td><h6>{{task.name}}</h6></td>\n          <td><h6>{{task.time}}</h6></td>\n          <td>\n            <button class=\"btn btn-danger\" (click)=\"deleteTask(task)\">Finished</button>&nbsp;\n            <button class=\"btn btn-info\" (click)=\"edit(task)\" >Edit</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n</div>\n<div class=\"column right\">\n    <div class=\"card\">\n        <form>\n          <div class=\"card-body\">\n            <h4 class=\"card-title\"><strong>Search</strong></h4>\n            <table class=\"table table-hover\">\n              <tbody>\n                <tr>\n                  <td>\n                    <div class=\"form-group\">\n                        <input type=\"text\" name=\"inputString\" [(ngModel)] = \"inputString\" class=\"form-control\">\n                    </div>\n                  </td>\n                </tr>\n                <tr>\n                  <button class=\"btn btn-success\" (click)=\"search()\">Search</button>&nbsp;\n                  <button class=\"btn btn-danger\" (click)=\"clearSearch()\">Clear</button>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n        </form>\n    </div>\n<div class=\"card\">\n    <form>\n      <div class=\"card-body\">\n        <h4 class=\"card-title\"><strong>Add A Goal</strong></h4>\n        <table class=\"table table-hover\">\n          <tbody>\n            <tr>\n              <td>\n                <div class=\"form-group\">\n                  <label><h6><strong>Goal</strong></h6></label>\n                    <input type=\"text\" name=\"name\" [(ngModel)] = \"name\" class=\"form-control\">\n                </div>\n              </td>\n            </tr>\n            <tr>\n              <td>\n                <div class=\"form-group\">\n                  <label><h6><strong>Time</strong></h6></label>\n                    <!-- <input type=\"text\" name=\"time\" [(ngModel)] = \"time\" class=\"form-control\"> -->\n                    <input type=\"time\" atp-time-picker value=\"{{time}}\" name=\"time\" [(ngModel)] = \"time\" class=\"form-control\">\n                </div>\n              </td>\n            </tr>\n            <tr>\n              <td>\n                  <!-- <input type=\"submit\" value=\"Submit\" class=\"btn btn-success\"> -->\n                  <button class=\"btn btn-success\" (click)=\"addOrUpdate()\">Submit</button>&nbsp;\n                  <button class=\"btn btn-danger\" (click)=\"clear()\">Clear</button>\n              </td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </form>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -356,6 +356,12 @@ var DashboardComponent = /** @class */ (function () {
         this.user_id = undefined;
         this.showClear();
     };
+    DashboardComponent.prototype.search = function () {
+        if (this.inputString == undefined) {
+            this.showError('Empty search box!');
+            return false;
+        }
+    };
     DashboardComponent.prototype.clearSearch = function () {
         if (this.inputString == undefined) {
             this.showError('There is nothing to clear!');
@@ -403,14 +409,14 @@ var DashboardComponent = /** @class */ (function () {
 /***/ "./src/app/home/home.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".column {\r\n    float: left;\r\n    padding: 0px;\r\n    height: 100%;\r\n    margin-top: -1px;\r\n}\r\n\r\n.loginRight {\r\n    width: 75%;\r\n    padding: 0px 0px 0px 400px;\r\n}\r\n\r\n.jumbotron{\r\n    background-color: rgba(0, 0, 0, 0.3);\r\n    text-align: center;\r\n}"
 
 /***/ }),
 
 /***/ "./src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"jumbotron center\">\n  <h1>Daily Goals App</h1>\n  <p class=\"lead\">\n    Welcome to the daily goals MEAN stack web app by <strong>Steve Dang</strong>\n  </p>\n</div>\n\n<!-- <div *ngIf=\"!login_messages\" class=\"alert alert-success\">\n    <strong>Success!</strong> You have logged in!\n</div>\n<div *ngIf=\"login_messages\" class=\"alert alert-success\">\n    <strong>Success!</strong> You have logged in! *******\n</div> -->\n\n\n<div *ngIf=\"!authService.signedIn()\">\n  <h2 class=\"page-header\">Login</h2>\n  <form class=\"form-signin\" (submit)=\"onLoginSubmit()\">\n          <div class=\"form-group\">\n            <label for=\"Username\">Username</label>\n            <input type=\"text\" class=\"form-control\" placeholder=\"Enter Username\" [(ngModel)]=\"username\" name=\"username\">\n          </div>\n          <div class=\"form-group\">\n          <label for=\"Password\">Password</label>\n          <input type=\"password\" class=\"form-control\" placeholder=\" Enter Password\" [(ngModel)]=\"password\" name=\"password\">\n          </div>\n          <div class=\"checkbox\">\n            <label>\n              <input type=\"checkbox\" value=\"remember-me\"> Remember me\n            </label>\n          </div>\n          <input class=\"btn btn-lg btn-success\" type=\"submit\" value=\"Login\"><br><br>\n          <p>Don't have an account yet? <a [routerLink] = \"['/register']\">Register Here</a></p> \n  </form>\n</div>\n"
+module.exports = "<html>\n\n<div class=\"container\">\n<div class=\"jumbotron center\">\n  <h1>Daily Goals App</h1>\n  <p class=\"lead\">\n    Welcome to the daily goals MEAN stack web app by <strong>Steve Dang</strong>\n  </p>\n</div>\n\n<!-- <div *ngIf=\"!login_messages\" class=\"alert alert-success\">\n    <strong>Success!</strong> You have logged in!\n</div>\n<div *ngIf=\"login_messages\" class=\"alert alert-success\">\n    <strong>Success!</strong> You have logged in! *******\n</div> -->\n\n<div class=\"row\">\n\n\n<div class=\"column loginRight\" *ngIf=\"!authService.signedIn()\">\n  <h2 class=\"page-header\">Login</h2>\n  <form class=\"form-signin\">\n          <div class=\"form-group\">\n            <label for=\"Username\">Username</label>\n            <input type=\"text\" class=\"form-control\" placeholder=\"Enter Username\" [(ngModel)]=\"username\" name=\"username\">\n          </div>\n          <div class=\"form-group\">\n          <label for=\"Password\">Password</label>\n          <input type=\"password\" class=\"form-control\" placeholder=\" Enter Password\" [(ngModel)]=\"password\" name=\"password\">\n          </div>\n          <div class=\"checkbox\">\n            <label>\n              <input type=\"checkbox\" value=\"remember-me\"> Remember me\n            </label>\n          </div>\n          <!-- <input class=\"btn btn-lg btn-success\" type=\"submit\" value=\"Login\"><br><br> -->\n          <button class=\"btn btn-success\" (click)=\"onLoginSubmit()\">Login</button>&nbsp;\n            <button class=\"btn btn-danger\" (click)=\"onCancelSubmit()\">Cancel</button><br><br>\n          <p>Don't have an account yet? <a [routerLink] = \"['/register']\">Register Here</a></p> \n  </form>\n</div>\n\n</div>\n\n</div>\n\n</html>"
 
 /***/ }),
 
@@ -462,6 +468,10 @@ var HomeComponent = /** @class */ (function () {
     // showCustom() {
     //   this.toastr.custom('<span style="color: red">Message in red.</span>', null, {enableHTML: true});
     // }
+    HomeComponent.prototype.onCancelSubmit = function () {
+        this.username = undefined;
+        this.password = undefined;
+    };
     HomeComponent.prototype.onLoginSubmit = function () {
         var _this = this;
         var user = {
@@ -591,14 +601,14 @@ var NavbarComponent = /** @class */ (function () {
 /***/ "./src/app/profile/profile.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".list-group-item {\r\n    background-color: rgba(0, 0, 0, 0.3);\r\n    width: 50%;\r\n}\r\n\r\n.column {\r\n    float: left;\r\n    padding: 0px;\r\n    height: 100%;\r\n    margin-top: -1px;\r\n}\r\n\r\n.profileRight {\r\n    width: 75%;\r\n    padding: 50px 0px 0px 100px;\r\n}"
 
 /***/ }),
 
 /***/ "./src/app/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"user\" class=\"container\">\n  <h2 class=\"page-header\">Welcome back, {{user.name}}.</h2>\n  <ul class=\"list-group\">\n      <li class=\"list-group-item\">ID: {{user._id}}</li>\n    <li class=\"list-group-item\">Username: {{user.username}}</li>\n    <li class=\"list-group-item\">Email: {{user.email}}</li> \n  </ul>\n</div>"
+module.exports = "<div class=\"row\">\n\n<div *ngIf=\"user\" class=\"container column profileRight\">\n    <h2 class=\"page-header\" style=\"color: rgb(223, 56, 35)\" >Welcome back, {{user.name}}.</h2>\n    <ul class=\"list-group\">\n        <li class=\"list-group-item\">ID: {{user._id}}</li>\n      <li class=\"list-group-item\">Username: {{user.username}}</li>\n      <li class=\"list-group-item\">Email: {{user.email}}</li> \n    </ul>\n  </div>\n\n</div>"
 
 /***/ }),
 
@@ -658,14 +668,14 @@ var ProfileComponent = /** @class */ (function () {
 /***/ "./src/app/register/register.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "\r\n.column {\r\n    float: left;\r\n    padding: 0px;\r\n    height: 100%;\r\n    margin-top: -1px;\r\n}\r\n\r\n.registerRight {\r\n    width: 75%;\r\n    padding: 50px 0px 0px 400px;\r\n}\r\n"
 
 /***/ }),
 
 /***/ "./src/app/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"jumbotron center\">\n    <h1>Daily Goals App</h1>\n</div>\n\n<div *ngIf=\"!authService.signedIn()\">\n  <h2 class=\"page-header\">Register</h2>\n  <form class=\"form-signin\" (submit)=\"onRegisterSubmit()\">\n          <div class=\"form-group\">\n            <label for=\"name\">Name</label>\n            <input type=\"text\" class=\"form-control\" placeholder=\"*Enter Name\" [(ngModel)]=\"name\" name=\"name\">\n          </div>\n          <div class=\"form-group\">\n            <label for=\"email\">Email</label>\n            <input type=\"text\" class=\"form-control\" placeholder=\"*Enter Email\" [(ngModel)]=\"email\" name=\"email\">\n          </div>\n\n          <div class=\"form-group\">\n            <label for=\"username\">Username</label>\n            <input type=\"text\" class=\"form-control\" placeholder=\"*Enter Username\" [(ngModel)]=\"username\" name=\"username\">\n          </div>\n\n          <div class=\"form-group\">\n          <label for=\"password\">Password</label>\n          <input type=\"password\" class=\"form-control\" placeholder=\"*Enter Password\" [(ngModel)]=\"password\" name=\"password\">\n          </div>\n\n          <input class=\"btn btn-lg btn-success\" type=\"submit\" value=\"Register\"><br><br>\n          <p>Already have an account? <a [routerLink] = \"['/']\">Login Here</a></p> \n  </form>\n</div>"
+module.exports = "<!-- <html> -->\n<div class=\"row\">\n<div class=\"column registerRight\">\n<div class=\"container\">\n  \n  <!-- <div class=\"jumbotron center\">\n      <h1>Daily Goals App</h1>\n  </div> -->\n\n  <div class=\"container\" *ngIf=\"!authService.signedIn()\">\n    <h2 class=\"page-header\">Register</h2>\n    <!-- <form class=\"form-signin\" (submit)=\"onRegisterSubmit()\"> -->\n        <form class=\"form-signin\">\n            <div class=\"form-group\">\n              <label for=\"name\">Name</label>\n              <input type=\"text\" class=\"form-control\" placeholder=\"*Enter Name\" [(ngModel)]=\"name\" name=\"name\">\n            </div>\n            <div class=\"form-group\">\n              <label for=\"email\">Email</label>\n              <input type=\"text\" class=\"form-control\" placeholder=\"*Enter Email\" [(ngModel)]=\"email\" name=\"email\">\n            </div>\n\n            <div class=\"form-group\">\n              <label for=\"username\">Username</label>\n              <input type=\"text\" class=\"form-control\" placeholder=\"*Enter Username\" [(ngModel)]=\"username\" name=\"username\">\n            </div>\n\n            <div class=\"form-group\">\n            <label for=\"password\">Password</label>\n            <input type=\"password\" class=\"form-control\" placeholder=\"*Enter Password\" [(ngModel)]=\"password\" name=\"password\">\n            </div>\n\n            <!-- <input class=\"btn btn-lg btn-success\" type=\"submit\" value=\"Register\"><br><br>\n            <button (click)=\"onCancelSubmit()\">Cancel</button> -->\n            <button class=\"btn btn-success\" (click)=\"onRegisterSubmit()\">Register</button>&nbsp;\n            <button class=\"btn btn-danger\" (click)=\"onCancelSubmit()\">Cancel</button><br><br>\n            <p>Already have an account? <a [routerLink] = \"['/']\">Login Here</a></p> \n    </form>\n  </div>\n\n</div>\n\n\n</div>\n</div>\n\n<!-- </html> -->"
 
 /***/ }),
 
@@ -700,6 +710,7 @@ var RegisterComponent = /** @class */ (function () {
         this.authService = authService;
         this.router = router;
         this.toastr = toastr;
+        this.toastr.setRootViewContainerRef(vcr);
     }
     RegisterComponent.prototype.ngOnInit = function () {
     };
@@ -715,8 +726,18 @@ var RegisterComponent = /** @class */ (function () {
     RegisterComponent.prototype.showError = function () {
         this.toastr.error('Something went wrong, please try again later!', 'Oops!');
     };
+    RegisterComponent.prototype.onCancelSubmit = function () {
+        this.username = undefined;
+        this.name = undefined;
+        this.email = undefined;
+        this.password = undefined;
+    };
     RegisterComponent.prototype.onRegisterSubmit = function () {
         var _this = this;
+        if ((this.name || this.email || this.username || this.password) == undefined) {
+            this.showWarning();
+            return false;
+        }
         var user = {
             name: this.name,
             email: this.email,

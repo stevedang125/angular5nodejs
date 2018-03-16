@@ -43,6 +43,11 @@ export class HomeComponent implements OnInit {
   //   this.toastr.custom('<span style="color: red">Message in red.</span>', null, {enableHTML: true});
   // }
 
+  onCancelSubmit(){
+    this.username = undefined;
+    this.password = undefined;
+  }
+
   onLoginSubmit(){
     const user = {
       username: this.username,
