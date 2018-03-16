@@ -32,6 +32,6 @@ $ nodemon server.js
 ```
 If all is successful, it should be available at your `localhost` on `port 8080` (`http://localhost:8080/`).
 
-## Check it out realy quick in my "demo" folder :)
+## Check it out in my "demo" folder :)
 
 
