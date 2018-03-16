@@ -93,7 +93,7 @@ export class DashboardComponent implements OnInit {
 
   addOrUpdate(){
     
-    if(this.name == null || this.time == null)
+    if(this.name == undefined || this.time == undefined)
     {
       this.showWarning();
       return false;
@@ -131,11 +131,10 @@ export class DashboardComponent implements OnInit {
     this.fetchDashboard();
 
     // Reset the form (for now temp. solution)
-    this._id = null;
-    this.name = null;
-    this.time = null;
-    this.user_id = null;
-
+    this._id = undefined;
+    this.name = undefined;
+    this.time = undefined;
+    this.user_id = undefined;
     this.showSuccess();
 
   } // close of AddOrUpdate
