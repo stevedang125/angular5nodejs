@@ -1,48 +1,9 @@
-<div *ngIf="user" class="card">
+<div *ngIf="user" class="header">
     <h2 class="page-header">{{user.name}}'s Daily Goals</h2>
 </div>
 
-<div class="card">
-<!-- <form (ngSubmit)="addOrUpdate()"> -->
-<form>
-  <div class="card-body">
-    <h4 class="card-title"><strong>Add A Goal</strong></h4>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th><h6><strong>Goal</strong></h6></th>
-          <th><h6><strong>Time</strong></h6></th>
-          <th></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td>
-            <div class="form-group">
-                <input type="text" name="name" [(ngModel)] = "name" class="form-control">
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-                <!-- <input type="text" name="time" [(ngModel)] = "time" class="form-control"> -->
-                <input type="time" atp-time-picker value="{{time}}" name="time" [(ngModel)] = "time" class="form-control">
-            </div>
-          </td>
-          <td>
-              <!-- <input type="submit" value="Submit" class="btn btn-success"> -->
-              <button class="btn btn-success" (click)="addOrUpdate()">Submit</button>&nbsp;
-              <button class="btn btn-danger" (click)="clear()">Clear</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</form>
-</div>
-
-
-
+<div class="row">
+<div class="column left scrolling">
 <div class="card">
   <div class="card-body">
     <h4 class="card-title"><strong>Goals and Time</strong></h4>
@@ -50,7 +11,6 @@
       
       <thead>
         <tr>
-          <!-- <th>ID</th> -->
           <th><h6><strong>Number</strong></h6></th>
           <th><h6><strong>Goals</strong></h6></th>
           <th><h6><strong>Time</strong></h6></th>
@@ -74,3 +34,78 @@
   </div>
 </div>
 
+</div>
+
+<div class="column right">
+
+    <div class="card">
+        <form>
+          <div class="card-body">
+            <h4 class="card-title"><strong>Search</strong></h4>
+            <table class="table table-hover">
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="form-group">
+                        <input type="text" name="search" [(ngModel)] = "search" class="form-control">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <button class="btn btn-success" (click)="search()">Search</button>&nbsp;
+                  <button class="btn btn-danger" (click)="clearSearch()">Clear</button>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </form>
+    </div>
+
+<div class="card">
+    <!-- <form (ngSubmit)="addOrUpdate()"> -->
+    <form>
+      <div class="card-body">
+        <h4 class="card-title"><strong>Add A Goal</strong></h4>
+        <table class="table table-hover">
+          <!-- <thead>
+            <tr>
+              <th><h6><strong>Goal</strong></h6></th>
+              <th><h6><strong>Time</strong></h6></th>
+              <th></th>
+            </tr>
+          </thead> -->
+    
+          <tbody>
+            <tr>
+              <td>
+                <div class="form-group">
+                  <label><h6><strong>Goal</strong></h6></label>
+                    <input type="text" name="name" [(ngModel)] = "name" class="form-control">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="form-group">
+                  <label><h6><strong>Time</strong></h6></label>
+                    <!-- <input type="text" name="time" [(ngModel)] = "time" class="form-control"> -->
+                    <input type="time" atp-time-picker value="{{time}}" name="time" [(ngModel)] = "time" class="form-control">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                  <!-- <input type="submit" value="Submit" class="btn btn-success"> -->
+                  <button class="btn btn-success" (click)="addOrUpdate()">Submit</button>&nbsp;
+                  <button class="btn btn-danger" (click)="clear()">Clear</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </form>
+    </div>
+
+  </div>
+
+</div>
