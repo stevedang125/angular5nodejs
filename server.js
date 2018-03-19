@@ -8,7 +8,7 @@ const path = require('path');
 const passport = require('passport');
 
 // Port number:
-const port = 8080;
+const port = process.env.PORT || 9090;
 const app = express();
 
 // Path to the users routes:

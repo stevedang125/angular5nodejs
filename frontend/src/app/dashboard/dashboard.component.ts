@@ -133,7 +133,7 @@ export class DashboardComponent implements OnInit {
     // Reset the form (for now temp. solution)
     this._id = undefined;
     this.name = undefined;
-    this.time = undefined;
+    this.time = null;
     this.user_id = undefined;
     this.showSuccess();
 
@@ -146,7 +146,7 @@ export class DashboardComponent implements OnInit {
     }
     this._id = undefined;
     this.name = undefined;
-    this.time = undefined;
+    this.time = null;
     this.user_id = undefined;
     this.showClear();
   }

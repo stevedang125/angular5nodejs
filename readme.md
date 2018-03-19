@@ -37,7 +37,7 @@ $ cd frontend && npm install && ng build
 $ cd ..
 $ node server.js
 ```
-If all is successful, it should be available at your `localhost` on `port 8080` (`http://localhost:8080/`).
+If all is successful, it should be available at your `localhost` on `port 9090` (`http://localhost:9090/`).
 
 ## Check it out in my "demo" folder :)
 
