@@ -41,7 +41,7 @@
                 <tr>
                   <td>
                     <div class="form-group">
-                        <input type="text" name="inputString" [(ngModel)] = "inputString" class="form-control">
+                        <input  placeholder="*Enter Name" type="text" name="inputString" [(ngModel)] = "inputString" class="form-control">
                     </div>
                   </td>
                 </tr>
@@ -64,7 +64,7 @@
               <td>
                 <div class="form-group">
                   <label><h6><strong>Goal</strong></h6></label>
-                    <input type="text" name="name" [(ngModel)] = "name" class="form-control">
+                    <input type="text" name="name" [(ngModel)] = "name" class="form-control" placeholder="*Add Goal">
                 </div>
               </td>
             </tr>
@@ -72,8 +72,8 @@
               <td>
                 <div class="form-group">
                   <label><h6><strong>Time</strong></h6></label>
-                    <!-- <input type="text" name="time" [(ngModel)] = "time" class="form-control"> -->
-                    <input type="time" atp-time-picker value="{{time}}" name="time" [(ngModel)] = "time" class="form-control">
+                    <!-- <input type="text" atp-time-picker value="" name="time" [(ngModel)] = "time" class="form-control"> -->
+                    <input type="text" atp-time-picker value="{{time}}" name="time" [(ngModel)] = "time" class="form-control" placeholder="*Add Time">
                 </div>
               </td>
             </tr>

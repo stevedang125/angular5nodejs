@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   
   _id:string = null;
   name:string;
-  time:string;
+  time:string = null;
   user_id:string;
 
   user: Object;
